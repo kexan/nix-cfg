@@ -52,6 +52,8 @@
           }
         ];
 
+      home-manager.backupFileExtension = "backup";
+
       networking = {
         useDHCP = lib.mkDefault true;
         hosts = {
