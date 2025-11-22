@@ -13,6 +13,7 @@
         [
           # Modules
           base
+          facter
           desktop
           sound
           shell
@@ -90,6 +91,8 @@
         };
       };
 
+      facter.reportPath = ./facter.json;
+
       fileSystems = {
 
         "/" = {
@@ -112,10 +115,10 @@
       ];
 
       nixpkgs = {
-        hostPlatform = lib.mkDefault "x86_64-linux";
         config.allowUnfree = true;
       };
 
-      hardware.cpu.amd.updateMicrocode = true;
+      #TODO: потестить Facter - если чёт будет не ок, вернуть
+      # hardware.cpu.amd.updateMicrocode = true;
     };
 }
