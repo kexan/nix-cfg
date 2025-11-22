@@ -12,6 +12,19 @@
         with config.flake.modules.nixos;
         [
           # Modules
+          base
+          desktop
+          sound
+          shell
+
+          docker
+          virtualbox
+
+          flatpak
+
+          gaming
+
+          vpn
 
           # Users
           root
@@ -23,7 +36,15 @@
           {
             home-manager.users.kexan = {
               imports = with config.flake.modules.homeManager; [
+                ai
+
                 base
+                desktop
+
+                docker
+                dev
+
+                messaging
                 shell
               ];
             };
@@ -32,7 +53,7 @@
 
       networking = {
         useDHCP = lib.mkDefault true;
-        networkmanager.hosts = {
+        hosts = {
           "192.168.1.100" = [
             "linuxservice.test"
             "yg.linuxservice.test"
@@ -49,9 +70,11 @@
       };
 
       boot = {
-        limine = {
-          enable = true;
-          maxGenerations = 15;
+        loader = {
+          limine = {
+            enable = true;
+            maxGenerations = 15;
+          };
         };
 
         initrd = {
@@ -93,6 +116,6 @@
         config.allowUnfree = true;
       };
 
-      hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+      hardware.cpu.amd.updateMicrocode = true;
     };
 }
