@@ -1,4 +1,7 @@
-topLevel@{ }:
+{
+  config,
+  ...
+}:
 
 {
   flake = {
@@ -15,7 +18,7 @@ topLevel@{ }:
 
     modules.nixos.kexan = {
       users.users.kexan = {
-        description = topLevel.config.flake.meta.users.kexan.name;
+        description = config.flake.meta.users.kexan.name;
         isNormalUser = true;
         createHome = true;
         extraGroups = [
@@ -25,11 +28,11 @@ topLevel@{ }:
           "vboxusers"
           "corectrl"
         ];
-        openssh.authorizedKeys.keys = topLevel.config.flake.meta.users.kexan.authorizedKeys;
+        openssh.authorizedKeys.keys = config.flake.meta.users.kexan.authorizedKeys;
         initialPassword = "id";
       };
 
-      nix.settings.trusted-users = [ topLevel.config.flake.meta.users.kexan.username ];
+      nix.settings.trusted-users = [ config.flake.meta.users.kexan.username ];
     };
   };
 }

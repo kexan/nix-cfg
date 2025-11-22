@@ -15,7 +15,7 @@
 
           # Users
           root
-          pol
+          kexan
         ]
 
         # Specific Home-Manager modules

@@ -29,8 +29,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs =
-    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules-new);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
