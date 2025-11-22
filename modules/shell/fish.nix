@@ -22,8 +22,7 @@
               }
             ];
             shellAliases = {
-              ".." = "cd ..";
-              "..." = "cd ../..";
+              cd = "z";
               cat = "bat";
               grep = "rg";
             };

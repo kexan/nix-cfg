@@ -27,7 +27,7 @@
 
             lua-language-server
 
-            nixd
+            nil
             statix
             nixfmt
 
