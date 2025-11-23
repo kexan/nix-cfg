@@ -55,7 +55,6 @@
       home-manager.backupFileExtension = "backup";
 
       networking = {
-        useDHCP = lib.mkDefault true;
         hosts = {
           "192.168.1.100" = [
             "linuxservice.test"
@@ -112,15 +111,10 @@
         };
       };
 
-      swapDevices = [
-        { device = "/dev/disk/by-uuid/6e5076bc-253c-4dd6-9831-676ee770423a"; }
-      ];
+      zramSwap.enable = true;
 
       nixpkgs = {
         config.allowUnfree = true;
       };
-
-      #TODO: потестить Facter - если чёт будет не ок, вернуть
-      # hardware.cpu.amd.updateMicrocode = true;
     };
 }
