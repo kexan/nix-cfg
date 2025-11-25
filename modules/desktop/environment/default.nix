@@ -5,12 +5,7 @@
       {
 
         services = {
-          desktopManager = {
-            plasma6 = {
-              enable = true;
-            };
-          };
-
+          desktopManager.plasma6.enable = true;
           displayManager.ly = {
             enable = true;
             settings = {
@@ -27,6 +22,7 @@
               hide_version_string = "true";
             };
           };
+          power-profiles-daemon.enable = true;
         };
 
         environment = {
