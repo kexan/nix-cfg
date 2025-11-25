@@ -24,6 +24,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     import-tree.url = "github:vic/import-tree";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
