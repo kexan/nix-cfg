@@ -5,7 +5,6 @@
       {
 
         services = {
-          desktopManager.plasma6.enable = true;
           displayManager.ly = {
             enable = true;
             settings = {
@@ -23,20 +22,6 @@
             };
           };
           power-profiles-daemon.enable = true;
-        };
-
-        environment = {
-          plasma6.excludePackages = with pkgs; [
-            kdePackages.elisa
-          ];
-        };
-
-        xdg = {
-          portal = {
-            enable = true;
-            config.common.default = "kde";
-            extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
-          };
         };
       };
 

@@ -12,6 +12,19 @@
         '';
       in
       {
+
+        services.desktopManager.plasma6.enable = true;
+
+        environment.plasma6.excludePackages = with pkgs; [
+          kdePackages.elisa
+        ];
+
+        xdg.portal = {
+          enable = true;
+          config.common.default = "kde";
+          extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+        };
+
         environment.systemPackages = [
           breezeCursorDefaultTheme
         ];
