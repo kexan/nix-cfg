@@ -8,7 +8,7 @@
       };
 
     homeManager.shell =
-      { pkgs, ... }:
+      { config, pkgs, ... }:
       {
         home.shell.enableFishIntegration = true;
 
@@ -37,7 +37,9 @@
             '';
           };
 
+          #FIXME: https://github.com/nix-community/home-manager/issues/8178
           interactiveShellInit = ''
+            set -p fish_complete_path ${config.programs.fish.package}/share/fish/completions
             abbr -a !! --position anywhere --function last_history_item
           '';
         };
