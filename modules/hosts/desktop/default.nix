@@ -17,6 +17,7 @@
           desktop
           sound
           shell
+          openssh
 
           docker
           virtualbox

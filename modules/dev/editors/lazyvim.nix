@@ -19,6 +19,9 @@
             editor = {
               inc_rename.enable = true;
             };
+            formatting = {
+              prettier.enable = true;
+            };
           };
 
           extraPackages = with pkgs; [
