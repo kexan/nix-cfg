@@ -1,20 +1,18 @@
 # Nix Configuration
 
-This repository contains my personal Nix configuration using a dendritic structure 
+This repository contains my personal Nix configuration organized using a dendritic structure.
 
 ## Dendritic Structure
 
-This configuration follows a dendritic approach, where modules are organized in a tree-like structure that promotes reusability and modularity.
+A dendritic approach structures configuration modules in a branching, tree-like pattern. This makes the setup:
 
-The dendritic approach allows for:
-- Modular configuration components
-- Reusable modules across different system setups
-- Clean separation of concerns
-- Easier maintenance and updates
+- Highly modular
+- Reusable across different systems
+- Cleanly separated by concerns
+- Easier to maintain and extend
 
 ## References
 
-- [dendritic](https://github.com/mightyiam/dendritic) - The original dendritic configuration pattern
-- [Dendrix](http://dendrix.oeiuwq.com/index.html) - An implementation of the dendritic concept
-- [Pol Dellaiera's Configuration](https://github.com/drupol/infra) - Another example of dendritic-style Nix configurations
-
+- [dendritic](https://github.com/mightyiam/dendritic) — the original dendritic configuration pattern.
+- [Dendrix](http://dendrix.oeiuwq.com/index.html) — a community-driven distribution of dendritic Nix configurations.
+- [Pol Dellaiera's Configuration](https://github.com/drupol/infra) — a dendritic-style setup that inspired this repository.
