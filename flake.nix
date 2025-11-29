@@ -38,6 +38,8 @@
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     systems.url = "github:nix-systems/default";
+
+    apple-silicon-support.url = "github:nix-community/nixos-apple-silicon";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
