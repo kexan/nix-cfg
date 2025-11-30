@@ -90,6 +90,13 @@
 
       zramSwap.enable = true;
 
+      swapDevices = [
+        {
+          device = "/swapfile";
+          size = 16 * 1024;
+        }
+      ];
+
       hardware.asahi.peripheralFirmwareDirectory = ./firmware;
 
       nixpkgs = {
