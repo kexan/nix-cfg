@@ -18,14 +18,10 @@
           sound
           shell
           openssh
-
           docker
           virtualbox
-
           flatpak
-
           gaming
-
           vpn
 
           # Users
