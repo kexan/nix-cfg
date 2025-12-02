@@ -24,7 +24,7 @@
         extraGroups = [
           "wheel"
           "networkmanager"
-          "docker"
+          "podman"
           "vboxusers"
           "corectrl"
         ];

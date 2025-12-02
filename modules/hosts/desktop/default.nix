@@ -18,7 +18,8 @@
           sound
           shell
           openssh
-          docker
+          podman
+          distrobox
           virtualbox
           flatpak
           gaming

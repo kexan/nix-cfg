@@ -1,9 +1,20 @@
 {
   flake.modules = {
-    nixos.podman = {
-      virtualisation.podman = {
-        enable = true;
-        dockerCompat = true;
+    nixos.podman =
+      { pkgs, ... }:
+      {
+        virtualisation.podman = {
+          enable = true;
+          dockerCompat = true;
+          dockerSocket.enable = true;
+        };
+
+        environment.systemPackages = [ pkgs.podman-compose ];
+      };
+
+    homeManager.podman = {
+      programs = {
+        lazydocker.enable = true;
       };
     };
   };
