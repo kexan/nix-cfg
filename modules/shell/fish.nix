@@ -3,7 +3,11 @@
     nixos.shell =
       { pkgs, ... }:
       {
-        programs.fish.enable = true;
+        programs.fish = {
+          enable = true;
+          #FIXME: https://github.com/nix-community/home-manager/issues/8178
+          generateCompletions = false;
+        };
         users.defaultUserShell = pkgs.fish;
       };
 
@@ -14,6 +18,8 @@
 
         programs.fish = {
           enable = true;
+          #FIXME: https://github.com/nix-community/home-manager/issues/8178
+          generateCompletions = false;
           plugins = [
             {
               name = "autopair";
@@ -37,9 +43,7 @@
             '';
           };
 
-          #FIXME: https://github.com/nix-community/home-manager/issues/8178
           interactiveShellInit = ''
-            set -p fish_complete_path ${config.programs.fish.package}/share/fish/completions
             abbr -a !! --position anywhere --function last_history_item
           '';
         };

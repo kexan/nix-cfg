@@ -40,12 +40,89 @@
 
         programs.plasma = {
           enable = true;
+
+          workspace = {
+            wallpaperPictureOfTheDay.provider = "bing";
+          };
+
+          panels = [
+            {
+              location = "top";
+              hiding = "none";
+              height = 36;
+              floating = true;
+              widgets = [
+                {
+                  name = "org.kde.plasma.kickoff";
+                  config = {
+                    General = {
+                      icon = "nix-snowflake";
+                    };
+                  };
+                }
+                "org.kde.plasma.marginsseparator"
+                {
+                  name = "org.kde.plasma.taskmanager";
+                  config = {
+                    General = {
+                      taskMaxWidth = "Narrow";
+                      wheelEnabled = "AllTask";
+                      launchers = [ ];
+                    };
+                  };
+                }
+                {
+                  name = "org.kde.plasma.panelspacer";
+                  config = {
+                    expanding = true;
+                  };
+                }
+                {
+                  name = "org.kde.plasma.pager";
+                  config = {
+                    General = {
+                      showWindowIcons = true;
+                    };
+                  };
+                }
+                "org.kde.plasma.marginsseparator"
+                {
+                  systemTray.items = {
+                    hidden = [
+                      "org.kde.plasma.clipboard"
+                      "Wallet Manager"
+                    ];
+                    shown = [
+                      "org.kde.plasma.bluetooth"
+                      "org.kde.plasma.keyboardlayout"
+                      "org.kde.plasma.volume"
+                      "org.kde.plasma.brightness"
+                      "org.kde.plasma.battery"
+                      "org.kde.plasma.networkmanagement"
+                    ];
+                  };
+                }
+                {
+                  name = "org.kde.plasma.digitalclock";
+                  config = {
+                    Appearance = {
+                      use24hFormat = true;
+                      showDate = false;
+                    };
+                  };
+                }
+                "org.kde.plasma.showdesktop"
+              ];
+            }
+          ];
+
+          krunner = {
+            position = "center";
+            shortcuts.launch = "Meta+Space";
+            historyBehavior = "enableSuggestions";
+          };
+
           shortcuts = {
-            ActivityManager.switch-to-activity-4f913322-3e3b-4d0e-b66c-e1e0e467d134 = [ ];
-            "KDE Keyboard Layout Switcher"."Switch keyboard layout to English (US)" = [ ];
-            "KDE Keyboard Layout Switcher"."Switch keyboard layout to Russian" = [ ];
-            "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
-            "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
             kwin = {
               "Switch to Desktop 1" = "Meta+1";
               "Switch to Desktop 2" = "Meta+2";
@@ -55,15 +132,14 @@
               "Window Close" = "Meta+C";
             };
             "services/org.kde.konsole.desktop"._launch = "Meta+Q";
-            "services/org.kde.krunner.desktop"._launch = "Meta+Space";
             "services/zen-beta.desktop"._launch = "Meta+Z";
           };
+
           configFile = {
             kcminputrc = {
               "Libinput/13364/53288/Keychron Keychron Ultra-Link 8K".NaturalScroll = true;
               "Libinput/13364/53288/Keychron Keychron Ultra-Link 8K".PointerAccelerationProfile = 1;
             };
-            kded5rc.Module-device_automounter.autoload = true;
             kdeglobals = {
               General = {
                 accentColorFromWallpaper = true;
