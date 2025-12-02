@@ -25,6 +25,7 @@
           shell
           openssh
           vpn
+          distrobox
 
           # Users
           root
@@ -105,7 +106,7 @@
       hardware = {
         asahi.peripheralFirmwareDirectory = ./firmware;
         graphics.package =
-          # Workaround for Mesa 25.3.0 regression
+          #FIXME: Workaround for Mesa 25.3.0 regression
           # https://github.com/nix-community/nixos-apple-silicon/issues/380
           assert pkgs.mesa.version == "25.3.0";
           (import (fetchTarball {
