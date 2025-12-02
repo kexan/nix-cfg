@@ -19,7 +19,6 @@
           shell
           openssh
           podman
-          distrobox
           virtualbox
           flatpak
           gaming
