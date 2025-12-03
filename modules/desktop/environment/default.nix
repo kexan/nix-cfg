@@ -19,6 +19,7 @@
               brightness_up_key = "null";
               default_input = "password";
               hide_version_string = "true";
+              xsessions = "/";
             };
           };
           power-profiles-daemon.enable = true;
