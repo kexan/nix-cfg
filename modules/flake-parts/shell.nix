@@ -1,49 +1,57 @@
 {
   perSystem =
     { pkgs, ... }:
+    let
+      update = pkgs.writeShellApplication {
+        name = "update";
+        runtimeInputs = [ pkgs.nix ];
+        text = ''
+          nix flake update
+        '';
+      };
+
+      build = pkgs.writeShellApplication {
+        name = "build";
+        runtimeInputs = [ pkgs.nh ];
+        text = ''
+          if [ $# -eq 0 ]; then
+            echo "Usage: build <hostname>" >&2
+            exit 1
+          fi
+
+          export NH_FLAKE="$PWD"
+          nh os build -H "$1"
+        '';
+      };
+
+      apply = pkgs.writeShellApplication {
+        name = "apply";
+        runtimeInputs = [ pkgs.nh ];
+        text = ''
+          if [ $# -eq 0 ]; then
+            echo "Usage: apply <hostname>" >&2
+            exit 1
+          fi
+
+          export NH_FLAKE="$PWD"
+          nh os switch -H "$1"
+        '';
+      };
+    in
     {
       devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          nvd
+        packages = [
+          pkgs.nh
+          update
+          build
+          apply
         ];
 
         shellHook = ''
-          devbin="$PWD/.direnv/devbin"
-          mkdir -p "$devbin"
-
-          cat > "$devbin/update" << 'EOF'
-          #!/usr/bin/env bash
-          nix flake update
-          EOF
-
-          cat > "$devbin/build" << 'EOF'
-          #!/usr/bin/env bash
-          if [ $# -eq 0 ]; then
-            echo "Usage: build <hostname>"
-            exit 1
-          fi
-          hostname="$1"
-          nixos-rebuild build --flake ".#$hostname" && nvd diff /run/current-system ./result
-          EOF
-
-          cat > "$devbin/apply" << 'EOF'
-          #!/usr/bin/env bash
-          if [ $# -eq 0 ]; then
-            echo "Usage: apply <hostname>"
-            exit 1
-          fi
-          hostname="$1"
-          sudo nixos-rebuild switch --flake ".#$hostname"
-          EOF
-
-          chmod +x "$devbin/update" "$devbin/build" "$devbin/apply"
-
-          export PATH="$devbin:$PATH"
-
-          echo "Nix shell ready!"
+          echo "Nix shell ready"
           echo "update            — nix flake update"
-          echo "build <hostname>  — nixos-rebuild build + nvd diff"
-          echo "apply <hostname>  — nixos-rebuild switch"
+          echo "build <hostname>  — nh os build -H <hostname>"
+          echo "apply <hostname>  — nh os switch -H <hostname>"
         '';
       };
     };
