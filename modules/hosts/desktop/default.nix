@@ -11,7 +11,6 @@
       imports =
         with config.flake.modules.nixos;
         [
-          # Modules
           base
           facter
           desktop
@@ -24,7 +23,6 @@
           gaming
           vpn
 
-          # Users
           root
           kexan
         ]
@@ -41,6 +39,7 @@
                 dev
                 messaging
                 shell
+                gaming
               ];
             };
           }
