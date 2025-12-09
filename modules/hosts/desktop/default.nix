@@ -35,13 +35,10 @@
             home-manager.users.kexan = {
               imports = with config.flake.modules.homeManager; [
                 ai
-
                 base
                 desktop
-
                 docker
                 dev
-
                 messaging
                 shell
               ];

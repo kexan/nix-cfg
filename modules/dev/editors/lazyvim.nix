@@ -39,18 +39,18 @@
             vtsls
           ];
 
-          #FIXME: Must add the 'plugins' attribute with content**
           plugins = {
-            # Adding any single valid plugin configuration resolves the issue.
-            # A colorscheme is a safe choice if you don't need anything else.
             colorscheme = ''
               return {
-                "ellisonleao/gruvbox.nvim",
-                opts = {
-                  colorscheme = "gruvbox",
-                },
-              }
-            '';
+                { "ellisonleao/gruvbox.nvim" },
+
+                {
+                  "LazyVim/LazyVim",
+                  opts = {
+                    colorscheme = "gruvbox",
+                  },
+                }
+              }  '';
           };
         };
 
