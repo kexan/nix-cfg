@@ -5,9 +5,8 @@
       {
         programs.fish = {
           enable = true;
-          #FIXME: https://github.com/nix-community/home-manager/issues/8178
-          generateCompletions = false;
         };
+
         users.defaultUserShell = pkgs.fish;
       };
 
@@ -18,8 +17,7 @@
 
         programs.fish = {
           enable = true;
-          #FIXME: https://github.com/nix-community/home-manager/issues/8178
-          generateCompletions = false;
+
           plugins = [
             {
               name = "autopair";

@@ -1,10 +1,8 @@
 {
   flake.modules = {
     homeManager.shell = {
-      programs = {
-        bat = {
-          enable = true;
-        };
+      programs.bat = {
+        enable = true;
       };
     };
   };
