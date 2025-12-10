@@ -72,11 +72,6 @@
           };
         };
 
-        blacklistedKernelModules = [
-          "kvm_amd"
-          "kvm"
-        ];
-
         initrd = {
           availableKernelModules = [
             "nvme"

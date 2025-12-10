@@ -5,6 +5,11 @@
         enable = true;
         enableExtensionPack = true;
       };
+
+      boot.blacklistedKernelModules = [
+        "kvm_amd"
+        "kvm"
+      ];
     };
   };
 }
