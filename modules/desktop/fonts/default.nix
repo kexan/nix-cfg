@@ -9,8 +9,8 @@
 
           packages = with pkgs; [
             corefonts
-            # тянуть все гугловские шрифты мне чет не нравится, мне нужен фактически только noto-fonts и roboto - но надо поресерчить почему jpdb.io ломается
-            google-fonts
+            roboto
+            noto-fonts
             nerd-fonts.fira-code
           ];
         };
