@@ -40,6 +40,14 @@
           inputs.plasma-manager.homeModules.plasma-manager
         ];
 
+        home = {
+          packages = with pkgs; [
+            kdePackages.kate
+            kdePackages.krdc
+            haruna
+          ];
+        };
+
         programs.plasma = {
           enable = true;
 

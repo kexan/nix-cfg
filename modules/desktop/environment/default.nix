@@ -30,10 +30,7 @@
       {
         home = {
           packages = with pkgs; [
-            kdePackages.kate
-            kdePackages.krdc
             qbittorrent
-            haruna
           ];
         };
       };
