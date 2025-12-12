@@ -40,6 +40,8 @@
           inputs.plasma-manager.homeModules.plasma-manager
         ];
 
+        xdg.autostart.enable = true;
+
         home = {
           packages = with pkgs; [
             kdePackages.kate

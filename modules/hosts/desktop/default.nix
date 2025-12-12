@@ -40,6 +40,7 @@
                 messaging
                 shell
                 gaming
+                vpn
               ];
             };
           }
