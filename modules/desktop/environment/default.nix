@@ -22,7 +22,6 @@
               xsessions = "/";
             };
           };
-          power-profiles-daemon.enable = true;
         };
       };
 

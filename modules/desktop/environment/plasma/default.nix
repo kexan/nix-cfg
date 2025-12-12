@@ -12,8 +12,10 @@
         '';
       in
       {
-
-        services.desktopManager.plasma6.enable = true;
+        services = {
+          desktopManager.plasma6.enable = true;
+          power-profiles-daemon.enable = true;
+        };
 
         environment.plasma6.excludePackages = with pkgs; [
           kdePackages.elisa
