@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop =
+  flake.modules.homeManager.niri =
     { lib, ... }:
     let
       radius = 12.0;

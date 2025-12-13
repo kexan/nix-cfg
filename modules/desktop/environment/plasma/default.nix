@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules = {
-    nixos.desktop =
+    nixos.plasma =
       { pkgs, ... }:
 
       let
@@ -32,7 +32,7 @@
         ];
       };
 
-    homeManager.desktop =
+    homeManager.plasma =
       { pkgs, ... }:
 
       {

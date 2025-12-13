@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    nixos.desktop =
+    nixos.plasma =
       {
         config,
         pkgs,

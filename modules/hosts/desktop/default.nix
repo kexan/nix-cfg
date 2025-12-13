@@ -14,6 +14,7 @@
           base
           facter
           desktop
+          plasma
           sound
           shell
           openssh
@@ -35,7 +36,7 @@
                 ai
                 base
                 desktop
-                docker
+                plasma
                 dev
                 messaging
                 shell

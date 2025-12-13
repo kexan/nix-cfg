@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    nixos.desktop = {
+    nixos.niri = {
       programs = {
         niri = {
           enable = true;
@@ -11,7 +11,7 @@
       };
     };
 
-    homeManager.desktop =
+    homeManager.niri =
       {
         lib,
         pkgs,
