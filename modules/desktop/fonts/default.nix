@@ -12,16 +12,28 @@
             roboto
             noto-fonts
             nerd-fonts.fira-code
+            joypixels
           ];
-        };
-      };
 
-    homeManager.desktop = {
-      fonts = {
-        fontconfig = {
-          enable = true;
+          fontconfig = {
+            enable = true;
+
+            defaultFonts = {
+              emoji = [
+                "JoyPixels"
+                "Noto Color Emoji"
+              ];
+
+              monospace = [
+                "FiraCode Nerd Font Mono"
+              ];
+            };
+          };
+        };
+
+        nixpkgs.config = {
+          joypixels.acceptLicense = true;
         };
       };
-    };
   };
 }
