@@ -13,8 +13,10 @@
         [
           base
           facter
+
           desktop
           plasma
+
           sound
           shell
           openssh
@@ -35,8 +37,11 @@
               imports = with config.flake.modules.homeManager; [
                 ai
                 base
+
                 desktop
                 plasma
+
+                podman
                 dev
                 messaging
                 shell

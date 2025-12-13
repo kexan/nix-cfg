@@ -37,6 +37,20 @@
           nh os switch -H "$1"
         '';
       };
+
+      boot = pkgs.writeShellApplication {
+        name = "boot";
+        runtimeInputs = [ pkgs.nh ];
+        text = ''
+          if [ $# -eq 0 ]; then
+            echo "Usage: boot <hostname>" >&2
+            exit 1
+          fi
+
+          export NH_FLAKE="$PWD"
+          nh os boot -H "$1"
+        '';
+      };
     in
     {
       devShells.default = pkgs.mkShell {
@@ -45,6 +59,7 @@
           update
           build
           apply
+          boot
         ];
 
         shellHook = ''
@@ -52,6 +67,7 @@
           echo "update            — nix flake update"
           echo "build <hostname>  — nh os build -H <hostname>"
           echo "apply <hostname>  — nh os switch -H <hostname>"
+          echo "boot  <hostname>  — nh os boot  -H <hostname>"
         '';
       };
     };

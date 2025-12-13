@@ -11,6 +11,8 @@
             corefonts
             roboto
             noto-fonts
+            noto-fonts-cjk-sans-static
+            noto-fonts-cjk-serif-static
             nerd-fonts.fira-code
             joypixels
           ];

@@ -21,10 +21,14 @@
           kdePackages.elisa
         ];
 
-        xdg.portal = {
-          enable = true;
-          config.common.default = "kde";
-          extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+        xdg = {
+          autostart.enable = true;
+
+          portal = {
+            enable = true;
+            config.common.default = "kde";
+            extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+          };
         };
 
         environment.systemPackages = [
@@ -39,8 +43,6 @@
         imports = [
           inputs.plasma-manager.homeModules.plasma-manager
         ];
-
-        xdg.autostart.enable = true;
 
         home = {
           packages = with pkgs; [
