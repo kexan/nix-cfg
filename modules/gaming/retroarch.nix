@@ -1,0 +1,55 @@
+{
+  flake.modules = {
+    homeManager.gaming =
+      {
+        inputs,
+        pkgs,
+        lib,
+        config,
+        ...
+      }:
+      {
+        imports = [
+          inputs.plasma-manager.homeModules.plasma-manager
+        ];
+
+        programs.plasma = lib.mkIf config.programs.plasma.enable {
+          window-rules = [
+            {
+              description = "Fullscreen hack for com.libretro.RetroArch";
+              match = {
+                window-class = {
+                  value = "com.libretro.RetroArch";
+                  type = "exact";
+                  match-whole = false;
+                };
+              };
+              apply = {
+                fullscreen = {
+                  value = true;
+                  apply = "force";
+                };
+              };
+            }
+          ];
+        };
+
+        programs.retroarch = {
+          enable = true;
+
+          cores = {
+            swanstation.enable = true;
+            ppsspp.enable = true;
+          };
+
+          settings = {
+            video_driver = "vulkan";
+            video_fullscreen = "false";
+            video_windowed_position_width = "2560";
+            video_windowed_position_height = "1440";
+            menu_driver = "xmb";
+          };
+        };
+      };
+  };
+}
