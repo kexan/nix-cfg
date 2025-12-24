@@ -60,7 +60,7 @@
           enable = true;
 
           workspace = {
-            wallpaperPictureOfTheDay.provider = "bing";
+            wallpaper = ../wallpapers/winxp.jpg;
           };
 
           panels = [
