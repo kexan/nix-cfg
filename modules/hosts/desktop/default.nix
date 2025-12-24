@@ -12,7 +12,6 @@
         with config.flake.modules.nixos;
         [
           base
-          facter
 
           desktop
           plasma
@@ -91,7 +90,7 @@
         };
       };
 
-      facter.reportPath = ./facter.json;
+      hardware.facter.reportPath = ./facter.json;
 
       fileSystems = {
 

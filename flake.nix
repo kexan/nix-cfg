@@ -40,8 +40,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
-
     systems.url = "github:nix-systems/default";
   };
 
