@@ -22,5 +22,8 @@
         optimise.automatic = true;
       };
 
+      nixpkgs.config.allowUnfree = true;
+
+      home-manager.backupFileExtension = "backup";
     };
 }

@@ -43,37 +43,6 @@
         }
       ];
 
-    gaming = {
-      corectrl.enable = true;
-    };
-
-    networking = {
-      hosts = {
-        "192.168.1.100" = [
-          "linuxservice.test"
-          "yg.linuxservice.test"
-        ];
-        "192.168.1.101" = [
-          "yougile.local"
-          "yg.yougile.local"
-        ];
-      };
-
-      firewall.allowedTCPPorts = [
-        #jellyfin port
-        8096
-      ];
-    };
-
-    boot = {
-      loader = {
-        limine = {
-          enable = true;
-          maxGenerations = 15;
-        };
-      };
-    };
-
     hardware.facter.reportPath = ./facter.json;
 
     fileSystems = {
@@ -94,10 +63,27 @@
 
     zramSwap.enable = true;
 
-    nixpkgs = {
-      config.allowUnfree = true;
+    gaming = {
+      corectrl.enable = true;
     };
 
-    home-manager.backupFileExtension = "backup";
+    networking = {
+      hosts = {
+        "192.168.1.100" = [
+          "linuxservice.test"
+          "yg.linuxservice.test"
+        ];
+        "192.168.1.101" = [
+          "yougile.local"
+          "yg.yougile.local"
+        ];
+      };
+
+      firewall.allowedTCPPorts = [
+        #jellyfin port
+        8096
+      ];
+
+    };
   };
 }
