@@ -15,6 +15,7 @@
               nix.enable = true;
               json.enable = true;
               typescript.enable = true;
+              rust.enable = true;
             };
             editor = {
               inc_rename.enable = true;
@@ -37,6 +38,8 @@
             vscode-json-languageserver
 
             vtsls
+
+            rust-analyzer
           ];
 
           plugins = {
