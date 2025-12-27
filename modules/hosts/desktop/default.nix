@@ -43,6 +43,10 @@
         }
       ];
 
+    gaming = {
+      corectrl.enable = true;
+    };
+
     networking = {
       hosts = {
         "192.168.1.100" = [
