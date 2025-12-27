@@ -18,7 +18,6 @@
         flatpak
         gaming
         vpn
-        root
         kexan
       ]
 
