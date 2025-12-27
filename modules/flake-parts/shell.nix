@@ -10,17 +10,21 @@
         '';
       };
 
+      check = pkgs.writeShellApplication {
+        name = "check";
+        runtimeInputs = [ pkgs.nix ];
+        text = ''
+          nix flake check
+        '';
+      };
+
       build = pkgs.writeShellApplication {
         name = "build";
         runtimeInputs = [ pkgs.nh ];
         text = ''
-          if [ $# -eq 0 ]; then
-            echo "Usage: build <hostname>" >&2
-            exit 1
-          fi
-
+          HOSTNAME="''${1:-$(hostname)}"
           export NH_FLAKE="$PWD"
-          nh os build -H "$1"
+          nh os build -H "$HOSTNAME"
         '';
       };
 
@@ -28,13 +32,9 @@
         name = "apply";
         runtimeInputs = [ pkgs.nh ];
         text = ''
-          if [ $# -eq 0 ]; then
-            echo "Usage: apply <hostname>" >&2
-            exit 1
-          fi
-
+          HOSTNAME="''${1:-$(hostname)}"
           export NH_FLAKE="$PWD"
-          nh os switch -H "$1"
+          nh os switch -H "$HOSTNAME"
         '';
       };
 
@@ -42,13 +42,9 @@
         name = "boot";
         runtimeInputs = [ pkgs.nh ];
         text = ''
-          if [ $# -eq 0 ]; then
-            echo "Usage: boot <hostname>" >&2
-            exit 1
-          fi
-
+          HOSTNAME="''${1:-$(hostname)}"
           export NH_FLAKE="$PWD"
-          nh os boot -H "$1"
+          nh os boot -H "$HOSTNAME"
         '';
       };
     in
@@ -57,17 +53,28 @@
         packages = [
           pkgs.nh
           update
+          check
           build
           apply
           boot
         ];
 
         shellHook = ''
-          echo "Nix shell ready"
-          echo "update            — nix flake update"
-          echo "build <hostname>  — nh os build -H <hostname>"
-          echo "apply <hostname>  — nh os switch -H <hostname>"
-          echo "boot  <hostname>  — nh os boot  -H <hostname>"
+          HOSTNAME=$(hostname)
+
+          echo -e "\033[1;34m╭────────────────────────────────────────────╮"
+          echo -e "│  Nix Development Shell                     │"
+          printf "│  Current host: %-27s │\n" "$HOSTNAME"
+          echo -e "╰────────────────────────────────────────────╯\033[0m"
+          echo ""
+          echo -e "\033[1;35mAvailable commands:\033[0m"
+          echo -e "  \033[1;36mupdate\033[0m           — nix flake update"
+          echo -e "  \033[1;36mcheck\033[0m            — nix flake check"
+          echo -e "  \033[1;36mbuild\033[0m [host]     — build configuration"
+          echo -e "  \033[1;36mapply\033[0m [host]     — apply configuration"
+          echo -e "  \033[1;36mboot\033[0m  [host]     — set boot configuration"
+          echo ""
+          echo -e "\033[2m(hostname is optional, defaults to current host)\033[0m"
         '';
       };
     };

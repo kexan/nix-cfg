@@ -36,8 +36,6 @@
 
     import-tree.url = "github:vic/import-tree";
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     systems.url = "github:nix-systems/default";
