@@ -11,9 +11,10 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 - Cleanly separated by concerns
 - Easier to maintain and extend
 
-## Installation
+## Installation (Remote Flake)
 
-This guide assumes you are booted into a NixOS Live ISO.
+This guide assumes you are booted into a NixOS Live ISO with internet access.
+You **do not** need to clone the repository manually.
 
 ### 1. Networking
 
@@ -27,15 +28,13 @@ wpa_supplicant -B -i wlan0 -c <(wpa_passphrase 'SSID' 'password')
 
 ### 2. Disk Partitioning (Disko)
 
-This configuration uses `disko` for declarative partitioning.
+You can run `disko` directly from the remote flake.
+Replace `redmibook` with your target host name.
 
 ```bash
-# Clone the repository
-git clone https://github.com/kexan/nix-cfg /mnt/etc/nixos
-
-# Run disko to partition, format, and mount drives
-# Replace 'redmibook' with your target host and adjust the path to disko.nix
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /mnt/etc/nixos/modules/hosts/redmibook/disko.nix
+# Partition, format, and mount drives automatically
+# NOTE: This will wipe the disk defined in the host configuration!
+nix run github:nix-community/disko -- --mode disko --flake github:kexan/nix-cfg#redmibook
 ```
 
 ### 3. Sops Key Injection
@@ -54,10 +53,10 @@ sudo chmod 600 /mnt/var/lib/sops-nix/key.txt
 
 ### 4. Install NixOS
 
-Run the installation using the flake:
+Install directly from the GitHub repository:
 
 ```bash
-nixos-install --flake /mnt/etc/nixos#redmibook
+nixos-install --flake github:kexan/nix-cfg#redmibook
 ```
 
 Reboot and enjoy!
