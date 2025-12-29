@@ -16,6 +16,7 @@
               json.enable = true;
               typescript.enable = true;
               rust.enable = true;
+              yaml.enable = true;
             };
             editor = {
               inc_rename.enable = true;
@@ -40,6 +41,8 @@
             vtsls
 
             rust-analyzer
+
+            yaml-language-server
           ];
 
           plugins = {
