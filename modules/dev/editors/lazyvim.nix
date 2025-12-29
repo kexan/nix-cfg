@@ -7,6 +7,12 @@
 
       {
         imports = [ inputs.lazyvim.homeManagerModules.default ];
+
+        home.sessionVariables = {
+          EDITOR = "nvim";
+          VISUAL = "nvim";
+        };
+
         programs.lazyvim = {
           enable = true;
 
