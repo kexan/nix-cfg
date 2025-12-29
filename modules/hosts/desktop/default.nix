@@ -37,6 +37,7 @@
               shell
               gaming
               vpn
+              kexan
             ];
           };
         }

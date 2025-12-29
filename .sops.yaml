@@ -1,0 +1,8 @@
+keys:
+  - &kexan age16havast30kfpjc3f8eqdaw8vwxcnjf7r44gysnzlq9cwkgvuscvqm9fk97
+
+creation_rules:
+  - path_regex: secrets/.*$
+    key_groups:
+      - age:
+        - *kexan
