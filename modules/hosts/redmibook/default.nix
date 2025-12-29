@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   ...
 }:
 
@@ -8,6 +9,8 @@
     imports =
       with config.flake.modules.nixos;
       [
+        inputs.disko.nixosModules.disko
+        ./disko.nix
         base
         sops
         desktop
@@ -35,25 +38,6 @@
           };
         }
       ];
-
-    #TODO: ADD FACTER AND FILESYSTEMS!!!
-    # hardware.facter.reportPath = ./facter.json;
-    #
-    # fileSystems = {
-    #   "/" = {
-    #     device = "/dev/disk/by-uuid/0bc05461-e615-466d-bf53-6192417f74d4";
-    #     fsType = "ext4";
-    #   };
-    #
-    #   "/boot" = {
-    #     device = "/dev/disk/by-uuid/9865-7182";
-    #     fsType = "vfat";
-    #     options = [
-    #       "fmask=0077"
-    #       "dmask=0077"
-    #     ];
-    #   };
-    # };
 
     zramSwap.enable = true;
 
