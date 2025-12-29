@@ -29,12 +29,12 @@ wpa_supplicant -B -i wlan0 -c <(wpa_passphrase 'SSID' 'password')
 ### 2. Disk Partitioning (Disko)
 
 You can run `disko` directly from the remote flake.
-Replace `redmibook` with your target host name.
+Replace `<hostname>` with your target host name defined in the flake (e.g., `redmibook` or `desktop`).
 
 ```bash
 # Partition, format, and mount drives automatically
 # NOTE: This will wipe the disk defined in the host configuration!
-nix run github:nix-community/disko -- --mode disko --flake github:kexan/nix-cfg#redmibook
+nix run github:nix-community/disko -- --mode disko --flake github:kexan/nix-cfg#<hostname>
 ```
 
 ### 3. Sops Key Injection
@@ -56,7 +56,7 @@ sudo chmod 600 /mnt/var/lib/sops-nix/key.txt
 Install directly from the GitHub repository:
 
 ```bash
-nixos-install --flake github:kexan/nix-cfg#redmibook
+nixos-install --flake github:kexan/nix-cfg#<hostname>
 ```
 
 Reboot and enjoy!
