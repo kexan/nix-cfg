@@ -71,7 +71,7 @@
               editedTitle = true;
             };
 
-            #FIXME: subfolders is broken?
+            #FIXME: subfolders is broken? https://github.com/0xc000022070/zen-browser-flake/issues/190
             # Folder "Тестирование"
             "Тестирование" = {
               id = folderWorkTestingId;
