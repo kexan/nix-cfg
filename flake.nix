@@ -39,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     import-tree.url = "github:vic/import-tree";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
