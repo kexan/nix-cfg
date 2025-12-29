@@ -22,6 +22,7 @@ let
         inherit specialArgs;
         modules = [
           module
+          inputs.disko.nixosModules.disko
           inputs.home-manager.nixosModules.home-manager
           { home-manager.extraSpecialArgs = specialArgs; }
         ];
