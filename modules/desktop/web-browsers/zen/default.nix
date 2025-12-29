@@ -4,9 +4,13 @@
   flake.modules = {
     homeManager.desktop = {
       imports = [ inputs.zen-browser.homeModules.beta ];
+
       programs.zen-browser = {
         enable = true;
         profiles.kexan = {
+          spacesForce = true;
+          pinsForce = true;
+
           settings = {
             "browser.aboutConfig.showWarning" = false;
             "browser.search.region" = "RU";
@@ -23,6 +27,22 @@
             "font.name.serif.ja" = "Noto Serif CJK JP";
             "font.name-list.emoji" = "JoyPixels, Noto Color Emoji, Twemoji Mozilla";
             "zen.welcome-screen.seen" = true;
+          };
+
+          # === Essentials ===
+          pins = {
+            "YouTube" = {
+              id = "e0000001-0000-0000-0000-000000000001";
+              url = "https://www.youtube.com/";
+              isEssential = true;
+              position = 10;
+            };
+            "Gmail" = {
+              id = "e0000002-0000-0000-0000-000000000002";
+              url = "https://mail.google.com/mail/u/0/#inbox";
+              isEssential = true;
+              position = 20;
+            };
           };
         };
       };

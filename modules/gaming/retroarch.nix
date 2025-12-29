@@ -40,6 +40,7 @@
           cores = {
             swanstation.enable = true;
             ppsspp.enable = true;
+            dolphin.enable = true;
           };
 
           settings = {
