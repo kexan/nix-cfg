@@ -1,10 +1,16 @@
 {
   flake.modules = {
-    nixos.docker = {
-      virtualisation.docker.enable = true;
-    };
+    nixos.docker =
+      { inputs, ... }:
+      {
+        virtualisation.docker.enable = true;
 
-    homeManager.docker = {
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager._docker
+        ];
+      };
+
+    homeManager._docker = {
       programs = {
         lazydocker.enable = true;
       };

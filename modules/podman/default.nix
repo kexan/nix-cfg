@@ -1,7 +1,7 @@
 {
   flake.modules = {
     nixos.podman =
-      { pkgs, ... }:
+      { inputs, pkgs, ... }:
       {
         virtualisation.podman = {
           enable = true;
@@ -10,9 +10,13 @@
         };
 
         environment.systemPackages = [ pkgs.podman-compose ];
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager._podman
+        ];
       };
 
-    homeManager.podman = {
+    homeManager._podman = {
       programs = {
         lazydocker.enable = true;
       };

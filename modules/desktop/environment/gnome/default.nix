@@ -1,7 +1,7 @@
 {
   flake.modules = {
     nixos.gnome =
-      { pkgs, ... }:
+      { inputs, pkgs, ... }:
 
       {
         services = {
@@ -34,6 +34,10 @@
             extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
           };
         };
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager.gnome
+        ];
       };
 
     homeManager.gnome = {

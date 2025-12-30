@@ -1,7 +1,7 @@
 {
   flake.modules = {
     nixos.desktop =
-      { pkgs, ... }:
+      { inputs, pkgs, ... }:
       {
 
         services = {
@@ -23,6 +23,10 @@
             };
           };
         };
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager.desktop
+        ];
       };
 
     homeManager.desktop =

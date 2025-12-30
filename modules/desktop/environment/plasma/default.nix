@@ -34,6 +34,10 @@
         environment.systemPackages = [
           breezeCursorDefaultTheme
         ];
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager.plasma
+        ];
       };
 
     homeManager.plasma =

@@ -18,23 +18,29 @@
       ];
     };
 
-    modules.nixos.kexan = {
-      users.users.kexan = {
-        description = config.flake.meta.users.kexan.name;
-        isNormalUser = true;
-        createHome = true;
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-          "podman"
-          "vboxusers"
-          "corectrl"
-        ];
-        openssh.authorizedKeys.keys = config.flake.meta.users.kexan.authorizedKeys;
-        initialPassword = "id";
-      };
+    modules.nixos.kexan =
+      { inputs, ... }:
+      {
+        users.users.kexan = {
+          description = config.flake.meta.users.kexan.name;
+          isNormalUser = true;
+          createHome = true;
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+            "podman"
+            "vboxusers"
+            "corectrl"
+          ];
+          openssh.authorizedKeys.keys = config.flake.meta.users.kexan.authorizedKeys;
+          initialPassword = "id";
+        };
 
-      nix.settings.trusted-users = [ config.flake.meta.users.kexan.username ];
-    };
+        nix.settings.trusted-users = [ config.flake.meta.users.kexan.username ];
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager.kexan
+        ];
+      };
   };
 }

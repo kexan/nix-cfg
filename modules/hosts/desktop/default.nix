@@ -9,6 +9,7 @@
       with config.flake.modules.nixos;
       [
         base
+        corectrl
         sops
         desktop
         plasma
@@ -29,15 +30,8 @@
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
               ai
-              base
-              desktop
-              plasma
-              podman
               dev
               messaging
-              shell
-              gaming
-              vpn
             ];
           };
         }
@@ -62,10 +56,6 @@
     };
 
     zramSwap.enable = true;
-
-    gaming = {
-      corectrl.enable = true;
-    };
 
     networking = {
       hosts = {

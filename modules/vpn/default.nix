@@ -1,12 +1,19 @@
 {
   flake.modules = {
-    nixos.vpn = {
-      programs.throne = {
-        enable = true;
-        tunMode.enable = true;
+    nixos.vpn =
+      { inputs, ... }:
+      {
+        programs.throne = {
+          enable = true;
+          tunMode.enable = true;
+        };
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager._vpn
+        ];
       };
-    };
-    homeManager.vpn =
+
+    homeManager._vpn =
       { pkgs, ... }:
       {
         xdg.autostart.entries = [

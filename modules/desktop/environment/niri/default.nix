@@ -1,15 +1,21 @@
 {
   flake.modules = {
-    nixos.niri = {
-      programs = {
-        niri = {
-          enable = true;
+    nixos.niri =
+      { inputs, ... }:
+      {
+        programs = {
+          niri = {
+            enable = true;
+          };
+          dms-shell = {
+            enable = true;
+          };
         };
-        dms-shell = {
-          enable = true;
-        };
+
+        home-manager.sharedModules = [
+          inputs.self.modules.homeManager.niri
+        ];
       };
-    };
 
     homeManager.niri =
       {
@@ -19,9 +25,7 @@
         ...
       }:
       {
-        imports = with inputs; [
-          niri.homeModules.niri
-        ];
+        imports = [ inputs.niri.homeModules.niri ];
 
         programs = {
           niri = {
