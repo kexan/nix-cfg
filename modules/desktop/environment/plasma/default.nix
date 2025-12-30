@@ -204,7 +204,7 @@
               Windows = {
                 DelayFocusInterval = 0;
                 FocusPolicy = "FocusFollowsMouse";
-                FocusStealingPreventionLevel = 0;
+                FocusStealingPreventionLevel = 1;
               };
               Xwayland.Scale = 1.5;
               "org.kde.kdecoration2" = {
