@@ -41,7 +41,7 @@
       };
 
     homeManager.plasma =
-      { pkgs, ... }:
+      { config, pkgs, ... }:
 
       {
         imports = [
@@ -58,13 +58,14 @@
             kdePackages.krdc
             haruna
           ];
+          file.".local/share/wallpapers/winxp.jpg".source = ../wallpapers/winxp.jpg;
         };
 
         programs.plasma = {
           enable = true;
 
           workspace = {
-            wallpaper = ../wallpapers/winxp.jpg;
+            wallpaper = "${config.home.homeDirectory}/.local/share/wallpapers/winxp.jpg";
           };
 
           panels = [
