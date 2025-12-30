@@ -36,7 +36,8 @@
         }
       ];
 
-    hardware.facter.reportPath = ./facter.json;
+    #TODO: ADD FACTER.JSON!!!
+    # hardware.facter.reportPath = ./facter.json;
 
     disko.devices = {
       disk = {
@@ -56,7 +57,10 @@
                   type = "filesystem";
                   format = "vfat";
                   mountpoint = "/boot";
-                  mountOptions = [ "fmask=0077" "dmask=0077" ];
+                  mountOptions = [
+                    "fmask=0077"
+                    "dmask=0077"
+                  ];
                 };
               };
               root = {
