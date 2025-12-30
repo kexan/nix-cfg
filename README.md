@@ -16,3 +16,4 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 - [dendritic](https://github.com/mightyiam/dendritic) — the original dendritic configuration pattern.
 - [Dendrix](http://dendrix.oeiuwq.com/index.html) — a community-driven distribution of dendritic Nix configurations.
 - [Pol Dellaiera's Configuration](https://github.com/drupol/infra) — a dendritic-style setup that inspired this repository.
+- [Doc-Steve's Dendritic Design Guide](https://github.com/Doc-Steve/dendritic-design-with-flake-parts)
