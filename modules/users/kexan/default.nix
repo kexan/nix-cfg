@@ -1,5 +1,8 @@
 { config, ... }:
 
+let
+  meta = config.flake.meta.users.kexan;
+in
 {
   flake = {
     meta.users.kexan = rec {
@@ -22,7 +25,7 @@
       { inputs, ... }:
       {
         users.users.kexan = {
-          description = config.flake.meta.users.kexan.name;
+          description = meta.name;
           isNormalUser = true;
           createHome = true;
           extraGroups = [
@@ -32,11 +35,11 @@
             "vboxusers"
             "corectrl"
           ];
-          openssh.authorizedKeys.keys = config.flake.meta.users.kexan.authorizedKeys;
+          openssh.authorizedKeys.keys = meta.authorizedKeys;
           initialPassword = "id";
         };
 
-        nix.settings.trusted-users = [ config.flake.meta.users.kexan.username ];
+        nix.settings.trusted-users = [ meta.username ];
 
         home-manager.sharedModules = [
           inputs.self.modules.homeManager.kexan

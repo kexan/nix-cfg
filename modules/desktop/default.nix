@@ -1,7 +1,13 @@
 {
   flake.modules = {
     nixos.desktop =
-      { inputs, pkgs, ... }:
+      {
+        lib,
+        config,
+        inputs,
+        pkgs,
+        ...
+      }:
       {
 
         services = {
@@ -23,6 +29,9 @@
             };
           };
         };
+
+        security.pam.services.ly.enableKwallet =
+          lib.mkIf config.services.desktopManager.plasma6.enable true;
 
         home-manager.sharedModules = [
           inputs.self.modules.homeManager.desktop

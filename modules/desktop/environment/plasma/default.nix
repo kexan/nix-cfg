@@ -17,9 +17,26 @@
           power-profiles-daemon.enable = true;
         };
 
-        environment.plasma6.excludePackages = with pkgs; [
-          kdePackages.elisa
-        ];
+        programs.ssh = {
+          startAgent = true;
+          enableAskPassword = true;
+          askPassword = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+        };
+
+        environment = {
+          plasma6.excludePackages = with pkgs; [
+            kdePackages.elisa
+          ];
+
+          systemPackages = [
+            pkgs.kdePackages.ksshaskpass
+            breezeCursorDefaultTheme
+          ];
+
+          sessionVariables = {
+            SSH_ASKPASS_REQUIRE = "prefer";
+          };
+        };
 
         xdg = {
           autostart.enable = true;
@@ -30,10 +47,6 @@
             extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
           };
         };
-
-        environment.systemPackages = [
-          breezeCursorDefaultTheme
-        ];
 
         home-manager.sharedModules = [
           inputs.self.modules.homeManager.plasma
@@ -58,7 +71,9 @@
             kdePackages.krdc
             haruna
           ];
+
           file.".local/share/wallpapers/winxp.jpg".source = ../wallpapers/winxp.jpg;
+          file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
         };
 
         programs.plasma = {
@@ -211,7 +226,6 @@
           };
         };
 
-        home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
       };
   };
 }

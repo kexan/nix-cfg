@@ -7,6 +7,7 @@
       matchBlocks = {
         "*" = {
           serverAliveInterval = 60;
+          addKeysToAgent = "yes";
         };
 
         "aeza" = {
