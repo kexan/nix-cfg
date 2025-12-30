@@ -35,17 +35,6 @@
       };
 
       nix.settings.trusted-users = [ config.flake.meta.users.kexan.username ];
-
-      sops.secrets.ssh_key = {
-        path = "/home/kexan/.ssh/id_ed25519";
-        owner = "kexan";
-        group = "users";
-        mode = "0600";
-      };
-    };
-
-    modules.homeManager.kexan = {
-      home.file.".ssh/id_ed25519.pub".text = config.flake.meta.users.kexan.sshKeys.default;
     };
   };
 }

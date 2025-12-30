@@ -9,6 +9,7 @@
       with config.flake.modules.nixos;
       [
         base
+        sops
         desktop
         plasma
         sound
@@ -37,7 +38,6 @@
               shell
               gaming
               vpn
-              kexan
             ];
           };
         }
