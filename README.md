@@ -34,12 +34,16 @@ This method automatically partitions the disk, installs the system, and reboots.
 nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> root@<target-ip>
 ```
 
-> **Note on Secrets:** Since this config uses `sops-nix`, you need to copy your keys to the target machine. Use the `--extra-files` flag:
+> **Note on Secrets:** If the target host uses `sops-nix` (imports the `sops` module), you must inject the decryption keys during deployment.
+> 
+> Create a directory with the correct file structure (e.g., `my-keys/var/lib/sops-nix/key.txt`) and pass it using the `--extra-files` flag:
 >
 > ```bash
+> # Ensure the directory structure inside matches the target filesystem
+> # Example: my-keys/var/lib/sops-nix/key.txt
 > nix run github:nix-community/nixos-anywhere -- \
->   --extra-files ./secrets-dir \
->   --flake .#vm root@192.168.1.50
+>   --extra-files ./my-keys \
+>   --flake .#<hostname> root@<target-ip>
 > ```
 
 ### Option 2: Manual Installation (using Disko)
