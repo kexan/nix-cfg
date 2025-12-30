@@ -13,32 +13,32 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 
 ## 🖥️ Hosts
 
-| Hostname    | Description | Device | Disko Support |
-| ----------- | ----------- | ------ | :-----------: |
-| `desktop`   | Main Workstation (Plasma) | PC | ❌ (Manual) |
-| `redmibook` | Laptop | RedmiBook | ❌ (Manual) |
-| `vm`        | Testing VM | QEMU/KVM | ✅ |
+| Hostname    | Description | Device |
+| ----------- | ----------- | ------ |
+| `desktop`   | Main Workstation | Desktop (Ryzen 7 7700 + RX 7700 XT) |
+| `redmibook` | Laptop | Redmibook Pro 14 (Intel Ultra 5 255H) |
+| `vm`        | Testing VM | QEMU/KVM |
 
 ## 🚀 Deployment
 
 ### Option 1: Automated Remote Deployment (nixos-anywhere)
 
-This method automatically partitions the disk, installs the system, and reboots. Ideal for new servers or VMs.
-*Note: The target host must have a `disko` configuration (currently enabled for `vm`).*
+This method automatically partitions the disk, installs the system, and reboots. Ideal for new installs or VMs.
+*Note: The target host must have a `disko` configuration*
 
 1. **Boot the target machine** into the NixOS installer.
 2. **Run the deployment** from your local machine:
 
 ```bash
-# Replace <hostname> with the target host (e.g., vm) and <target-ip> with its IP address
-nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> root@<target-ip>
+# Replace <hostname> with the target host (e.g., desktop) and <target-ip> with its IP address
+nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> nixos@<target-ip>
 ```
 
 > **Note on Secrets:** If the target host uses `sops-nix` (imports the `sops` module), you must inject the decryption keys during deployment.
 > 
 > Create a directory with the correct file structure (e.g., `my-keys/var/lib/sops-nix/key.txt`) and pass it using the `--extra-files` flag:
 >
-> ```bash
+> ```
 > # Ensure the directory structure inside matches the target filesystem
 > # Example: my-keys/var/lib/sops-nix/key.txt
 > nix run github:nix-community/nixos-anywhere -- \
@@ -49,6 +49,7 @@ nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> root@<target
 ### Option 2: Manual Installation (using Disko)
 
 This method assumes you are booted into a NixOS Live ISO with internet access.
+*Note: The target host must have a `disko` configuration*
 
 1. **Partition the disks** using the flake's Disko configuration:
 
@@ -76,7 +77,7 @@ sudo chmod 600 /mnt/var/lib/sops-nix/key.txt
 ```
 
 <details>
-<summary><h2>How to fork and use this configuration</h2></summary>
+<summary><h2>🍴 How to fork and use this configuration</h2></summary>
 
 If you want to use this repository as a base for your own NixOS configuration, follow these steps.
 
