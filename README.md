@@ -10,8 +10,9 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 - Reusable across different systems
 - Cleanly separated by concerns
 - Easier to maintain and extend
-
-## Installation (Remote Flake)
+  
+<details>
+<summary><h2>Installation</h2></summary>
 
 This guide assumes you are booted into a NixOS Live ISO with internet access.
 
@@ -62,6 +63,8 @@ nixos-install --flake github:kexan/nix-cfg#<hostname>
 
 Reboot and enjoy!
 
+</details>
+
 <details>
 <summary><h2>How to fork and use this configuration</h2></summary>
 
@@ -99,7 +102,7 @@ You cannot use the existing `secrets/secrets.yaml` because it is encrypted with 
    (Add the necessary keys like `ssh_key` referenced in user config).
 
 ### 3. Hardware & Disko
-1. **Disko**: Edit `modules/hosts/<host>/disko.nix` to match your drive name (e.g., `/dev/nvme0n1` or `/dev/sda`).
+1. **Disko**: Edit disko configuration in `modules/hosts/<host>.nix`
 2. **Install**: Follow the Installation guide above, but use your own fork URL.
 
 </details>
