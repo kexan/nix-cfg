@@ -9,11 +9,13 @@
       with config.flake.modules.nixos;
       [
         base
+        sops
         desktop
         plasma
         sound
         shell
         openssh
+        podman
         virtualbox
         flatpak
         gaming
@@ -27,15 +29,8 @@
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
               ai
-              base
-              desktop
-              plasma
               dev
               messaging
-              shell
-              gaming
-              vpn
-              kexan
             ];
           };
         }
