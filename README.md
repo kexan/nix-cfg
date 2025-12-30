@@ -10,60 +10,66 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 - Reusable across different systems
 - Cleanly separated by concerns
 - Easier to maintain and extend
-  
-<details>
-<summary><h2>Installation</h2></summary>
 
-This guide assumes you are booted into a NixOS Live ISO with internet access.
+## 🖥️ Hosts
 
-### 1. Networking
+| Hostname    | Description | Device | Disko Support |
+| ----------- | ----------- | ------ | :-----------: |
+| `desktop`   | Main Workstation (Plasma) | PC | ❌ (Manual) |
+| `redmibook` | Laptop | RedmiBook | ❌ (Manual) |
+| `vm`        | Testing VM | QEMU/KVM | ✅ |
 
-Connect to the internet:
+## 🚀 Deployment
+
+### Option 1: Automated Remote Deployment (nixos-anywhere)
+
+This method automatically partitions the disk, installs the system, and reboots. Ideal for new servers or VMs.
+*Note: The target host must have a `disko` configuration (currently enabled for `vm`).*
+
+1. **Boot the target machine** into the NixOS installer.
+2. **Run the deployment** from your local machine:
 
 ```bash
-nmtui
-# or
-wpa_supplicant -B -i wlan0 -c <(wpa_passphrase 'SSID' 'password')
+# Replace <hostname> with the target host (e.g., vm) and <target-ip> with its IP address
+nix run github:nix-community/nixos-anywhere -- --flake .#<hostname> root@<target-ip>
 ```
 
-### 2. Disk Partitioning (Disko)
+> **Note on Secrets:** Since this config uses `sops-nix`, you need to copy your keys to the target machine. Use the `--extra-files` flag:
+>
+> ```bash
+> nix run github:nix-community/nixos-anywhere -- \
+>   --extra-files ./secrets-dir \
+>   --flake .#vm root@192.168.1.50
+> ```
 
-You can run `disko` directly from the remote flake.
-Replace `<hostname>` with your target host name defined in the flake (e.g., `redmibook` or `desktop`).
+### Option 2: Manual Installation (using Disko)
+
+This method assumes you are booted into a NixOS Live ISO with internet access.
+
+1. **Partition the disks** using the flake's Disko configuration:
 
 ```bash
 # Partition, format, and mount drives automatically
-# NOTE: This will wipe the disk defined in the host configuration!
 nix run github:nix-community/disko -- --mode disko --flake github:kexan/nix-cfg#<hostname>
 ```
 
-### 3. Sops Key Injection
-
-If you have enabled the `sops` module, you must manually place the AGE key on the target system so secrets can be decrypted on the first boot.
-
-In this example, the AGE key is stored on an external drive.
-
-1.  Plug in your external drive containing `key.txt`.
-2.  Mount it (e.g., to `/media`).
-3.  Copy the key to the target location:
+2. **Install NixOS**:
 
 ```bash
-sudo mkdir -p /mnt/var/lib/sops-nix/
-sudo cp /media/key.txt /mnt/var/lib/sops-nix/key.txt
-sudo chmod 600 /mnt/var/lib/sops-nix/key.txt
-```
-
-### 4. Install NixOS
-
-Install directly from the GitHub repository:
-
-```bash
+# Install the system to the /mnt directory mounted by Disko
 nixos-install --flake github:kexan/nix-cfg#<hostname>
 ```
 
-Reboot and enjoy!
+### 3. Sops Key Injection (Manual)
 
-</details>
+If you are installing manually and have enabled `sops`, you must place the AGE key on the target system before the first boot.
+
+```bash
+sudo mkdir -p /mnt/var/lib/sops-nix/
+# Copy your key (assuming it's on a mounted USB drive or downloaded)
+sudo cp /path/to/key.txt /mnt/var/lib/sops-nix/key.txt
+sudo chmod 600 /mnt/var/lib/sops-nix/key.txt
+```
 
 <details>
 <summary><h2>How to fork and use this configuration</h2></summary>
@@ -99,11 +105,6 @@ You cannot use the existing `secrets/secrets.yaml` because it is encrypted with 
    ```bash
    sops secrets/secrets.yaml
    ```
-   (Add the necessary keys like `ssh_key` referenced in user config).
-
-### 3. Hardware & Disko
-1. **Disko**: Edit disko configuration in `modules/hosts/<host>.nix`
-2. **Install**: Follow the Installation guide above, but use your own fork URL.
 
 </details>
 
