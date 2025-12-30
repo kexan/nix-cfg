@@ -2,6 +2,8 @@
 
 This repository contains my personal Nix configuration organized using a dendritic structure.
 
+<img width="3840" height="2160" alt="desktop screenshot" src="https://github.com/user-attachments/assets/634df37c-4f15-4765-9768-5e4e1ab36d47" />
+
 ## Dendritic Structure
 
 A dendritic approach structures configuration modules in a branching, tree-like pattern. This makes the setup:
