@@ -14,7 +14,6 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 ## Installation (Remote Flake)
 
 This guide assumes you are booted into a NixOS Live ISO with internet access.
-You **do not** need to clone the repository manually.
 
 ### 1. Networking
 
@@ -39,7 +38,9 @@ nix run github:nix-community/disko -- --mode disko --flake github:kexan/nix-cfg#
 
 ### 3. Sops Key Injection
 
-Before installing, you must manually place the `age` key on the target system so `sops-nix` can decrypt secrets on the first boot.
+If you have enabled the `sops` module, you must manually place the AGE key on the target system so secrets can be decrypted on the first boot.
+
+In this example, the AGE key is stored on an external drive.
 
 1.  Plug in your external drive containing `key.txt`.
 2.  Mount it (e.g., to `/media`).
