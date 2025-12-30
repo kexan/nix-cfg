@@ -33,7 +33,6 @@
       disk = {
         main = {
           type = "disk";
-          imageSize = "25G";
           device = "/dev/sda";
           content = {
             type = "gpt";
