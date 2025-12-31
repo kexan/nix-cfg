@@ -53,7 +53,6 @@
         };
       };
 
-      # Plasma Integration: Add shortcut if Plasma is enabled
       programs.plasma = lib.mkIf (config.programs.plasma.enable or false) {
         shortcuts = {
           "services/zen-beta.desktop"._launch = "Meta+Z";
