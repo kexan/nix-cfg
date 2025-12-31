@@ -1,9 +1,15 @@
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 
 {
-  flake.modules = {
-    homeManager.desktop = {
-      imports = [ inputs.zen-browser.homeModules.beta ];
+  flake.modules.homeManager.zen-browser =
+    { lib, config, ... }:
+    {
+      imports = [
+        inputs.zen-browser.homeModules.beta
+      ];
 
       programs.zen-browser = {
         enable = true;
@@ -46,6 +52,11 @@
           };
         };
       };
+
+      programs.plasma = lib.mkIf (config.programs.plasma.enable or false) {
+        shortcuts = {
+          "services/zen-beta.desktop"._launch = "Meta+Z";
+        };
+      };
     };
-  };
 }

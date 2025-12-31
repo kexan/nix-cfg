@@ -31,6 +31,7 @@
               ai
               dev
               messaging
+              zen-browser
             ];
           };
         }
