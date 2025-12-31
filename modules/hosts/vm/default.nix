@@ -22,6 +22,7 @@
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
               dev
+              zen-browser
             ];
           };
         }

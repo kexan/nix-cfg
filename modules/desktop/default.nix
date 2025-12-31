@@ -34,11 +34,11 @@
           lib.mkIf config.services.desktopManager.plasma6.enable true;
 
         home-manager.sharedModules = [
-          inputs.self.modules.homeManager.desktop
+          inputs.self.modules.homeManager._desktop
         ];
       };
 
-    homeManager.desktop =
+    homeManager._desktop =
       { pkgs, ... }:
       {
         home = {

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.zen = {
+  flake.modules.homeManager.zen-browser = {
     programs.zen-browser.profiles.kexan =
       let
         spaceWorkId = "d2222222-b2a1-4098-8765-43210fedcba9";

@@ -2,15 +2,13 @@
   flake.modules = {
     homeManager.gaming =
       {
-        inputs,
-        pkgs,
         lib,
         config,
         ...
       }:
       {
         programs = {
-          plasma = lib.mkIf config.programs.plasma.enable {
+          plasma = lib.mkIf (config.programs.plasma.enable or false) {
             window-rules = [
               {
                 description = "Fullscreen hack for com.libretro.RetroArch";
