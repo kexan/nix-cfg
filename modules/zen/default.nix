@@ -2,7 +2,11 @@
 
 {
   flake.modules.homeManager.zen = {
-    imports = [ inputs.zen-browser.homeModules.beta ];
+    imports = [
+      inputs.zen-browser.homeModules.beta
+      ./spaces/life.nix
+      ./spaces/work.nix
+    ];
 
     programs.zen-browser = {
       enable = true;
