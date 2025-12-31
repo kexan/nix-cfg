@@ -170,7 +170,6 @@
               "Window Close" = "Meta+C";
             };
             "services/org.kde.konsole.desktop"._launch = "Meta+Q";
-            "services/zen-beta.desktop"._launch = "Meta+Z";
           };
 
           configFile = {
