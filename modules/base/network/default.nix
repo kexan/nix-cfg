@@ -9,6 +9,8 @@
           enable = true;
           plugins = [ pkgs.networkmanager-openvpn ];
         };
+
+        useDHCP = false;
       };
 
       systemd = {

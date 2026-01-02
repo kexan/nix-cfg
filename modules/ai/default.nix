@@ -2,11 +2,8 @@
   flake.modules = {
     homeManager.ai =
       { pkgs, ... }:
-
       {
-        home.packages = with pkgs; [
-          qwen-code
-        ];
+        home.packages = [ pkgs.master.qwen-code ];
       };
   };
 }

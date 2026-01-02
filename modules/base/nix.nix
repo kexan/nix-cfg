@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.base =
-    { pkgs, ... }:
+    { inputs, pkgs, ... }:
     {
       nix = {
         settings = {
@@ -22,8 +22,22 @@
         optimise.automatic = true;
       };
 
-      nixpkgs.config.allowUnfree = true;
+      nixpkgs = {
+        config.allowUnfree = true;
+        overlays = [
+          (final: _prev: {
+            master = import inputs.nixpkgs-master {
+              inherit (final.stdenv.hostPlatform) system;
+              inherit (final) config;
+            };
+          })
+        ];
+      };
 
-      home-manager.backupFileExtension = "backup";
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "backup";
+      };
     };
 }
