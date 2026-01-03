@@ -64,7 +64,7 @@
              touch "$FILE"
           fi
 
-          sudo SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt EDITOR=nvim HOME="$HOME" XDG_CONFIG_HOME="$HOME/.config" sops "$FILE"
+          sudo SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt EDITOR="$EDITOR" HOME="$HOME" XDG_CONFIG_HOME="$HOME/.config" sops "$FILE"
         '';
       };
     in
