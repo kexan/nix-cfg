@@ -2,11 +2,16 @@
   flake.modules = {
     homeManager.retroarch =
       {
+        inputs,
         lib,
         config,
         ...
       }:
       {
+        imports = [
+          inputs.plasma-manager.homeModules.plasma-manager
+        ];
+
         programs = {
           retroarch = {
             enable = true;

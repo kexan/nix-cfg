@@ -1,16 +1,17 @@
 {
   flake.modules.nixos.sops =
-    { inputs, ... }:
+    { inputs, lib, ... }:
     {
       imports = [ inputs.sops-nix.nixosModules.sops ];
 
-      sops = {
-        defaultSopsFile = ../../secrets/secrets.yaml;
-        age.keyFile = "/var/lib/sops-nix/key.txt";
-      };
+      options.sops.enable = lib.mkEnableOption "Enable sops-nix integration";
 
-      home-manager.sharedModules = [
-        inputs.self.modules.homeManager._sops
-      ];
+      config = {
+        sops = {
+          enable = true;
+          defaultSopsFile = ../../secrets/secrets.yaml;
+          age.keyFile = "/var/lib/sops-nix/key.txt";
+        };
+      };
     };
 }
