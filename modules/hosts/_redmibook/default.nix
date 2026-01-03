@@ -9,6 +9,7 @@
       with config.flake.modules.nixos;
       [
         base
+        btrfs
         sops
         desktop
         plasma
@@ -37,6 +38,19 @@
           };
         }
       ];
+
+    networking = {
+      hosts = {
+        "192.168.1.100" = [
+          "linuxservice.test"
+          "yg.linuxservice.test"
+        ];
+        "192.168.1.101" = [
+          "yougile.local"
+          "yg.yougile.local"
+        ];
+      };
+    };
 
     #TODO: ADD FACTER.JSON!!!
     # hardware.facter.reportPath = ./facter.json;
@@ -68,9 +82,41 @@
               root = {
                 size = "100%";
                 content = {
-                  type = "filesystem";
-                  format = "ext4";
-                  mountpoint = "/";
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+
+                  subvolumes = {
+                    "@" = {
+                      mountpoint = "/";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
+                    "@home" = {
+                      mountpoint = "/home";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
+                    "@nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
+                    "@swap" = {
+                      mountpoint = "/.swapvol";
+                      swap = {
+                        swapfile.size = "8G";
+                      };
+                    };
+                  };
                 };
               };
             };
@@ -80,18 +126,5 @@
     };
 
     zramSwap.enable = true;
-
-    networking = {
-      hosts = {
-        "192.168.1.100" = [
-          "linuxservice.test"
-          "yg.linuxservice.test"
-        ];
-        "192.168.1.101" = [
-          "yougile.local"
-          "yg.yougile.local"
-        ];
-      };
-    };
   };
 }

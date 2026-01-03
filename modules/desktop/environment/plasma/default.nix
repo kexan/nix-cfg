@@ -61,21 +61,6 @@
           inputs.plasma-manager.homeModules.plasma-manager
         ];
 
-        xdg = {
-          autostart.enable = true;
-        };
-
-        home = {
-          packages = with pkgs; [
-            kdePackages.kate
-            kdePackages.krdc
-            haruna
-          ];
-
-          file.".local/share/wallpapers/winxp.jpg".source = ../wallpapers/winxp.jpg;
-          file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
-        };
-
         programs.plasma = {
           enable = true;
 
@@ -225,6 +210,18 @@
           };
         };
 
+        xdg.autostart.enable = true;
+
+        home = {
+          packages = with pkgs; [
+            kdePackages.kate
+            kdePackages.krdc
+            haruna
+          ];
+
+          file.".local/share/wallpapers/winxp.jpg".source = ../wallpapers/winxp.jpg;
+          file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
+        };
       };
   };
 }

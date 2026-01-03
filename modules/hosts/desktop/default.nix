@@ -9,6 +9,7 @@
       with config.flake.modules.nixos;
       [
         base
+        #btrfs
         corectrl
         sops
         desktop
@@ -39,26 +40,6 @@
         }
       ];
 
-    hardware.facter.reportPath = ./facter.json;
-
-    fileSystems = {
-      "/" = {
-        device = "/dev/disk/by-uuid/0bc05461-e615-466d-bf53-6192417f74d4";
-        fsType = "ext4";
-      };
-
-      "/boot" = {
-        device = "/dev/disk/by-uuid/9865-7182";
-        fsType = "vfat";
-        options = [
-          "fmask=0077"
-          "dmask=0077"
-        ];
-      };
-    };
-
-    zramSwap.enable = true;
-
     networking = {
       hosts = {
         "192.168.1.100" = [
@@ -77,5 +58,95 @@
       ];
 
     };
+
+    hardware.facter.reportPath = ./facter.json;
+
+    fileSystems = {
+      "/" = {
+        device = "/dev/disk/by-uuid/0bc05461-e615-466d-bf53-6192417f74d4";
+        fsType = "ext4";
+      };
+
+      "/boot" = {
+        device = "/dev/disk/by-uuid/9865-7182";
+        fsType = "vfat";
+        options = [
+          "fmask=0077"
+          "dmask=0077"
+        ];
+      };
+    };
+
+    # disko.devices = {
+    #   disk = {
+    #     main = {
+    #       type = "disk";
+    #       device = "/dev/nvme0n1";
+    #       content = {
+    #         type = "gpt";
+    #         partitions = {
+    #           ESP = {
+    #             priority = 1;
+    #             name = "ESP";
+    #             start = "1M";
+    #             end = "512M";
+    #             type = "EF00";
+    #             content = {
+    #               type = "filesystem";
+    #               format = "vfat";
+    #               mountpoint = "/boot";
+    #               mountOptions = [
+    #                 "fmask=0077"
+    #                 "dmask=0077"
+    #               ];
+    #             };
+    #           };
+    #           root = {
+    #             size = "100%";
+    #             content = {
+    #               type = "btrfs";
+    #               extraArgs = [ "-f" ];
+    #
+    #               subvolumes = {
+    #                 "@" = {
+    #                   mountpoint = "/";
+    #                   mountOptions = [
+    #                     "compress=zstd"
+    #                     "noatime"
+    #                   ];
+    #                 };
+    #
+    #                 "@home" = {
+    #                   mountpoint = "/home";
+    #                   mountOptions = [
+    #                     "compress=zstd"
+    #                     "noatime"
+    #                   ];
+    #                 };
+    #
+    #                 "@nix" = {
+    #                   mountpoint = "/nix";
+    #                   mountOptions = [
+    #                     "compress=zstd"
+    #                     "noatime"
+    #                   ];
+    #                 };
+    #
+    #                 "@swap" = {
+    #                   mountpoint = "/.swapvol";
+    #                   swap = {
+    #                     swapfile.size = "8G";
+    #                   };
+    #                 };
+    #               };
+    #             };
+    #           };
+    #         };
+    #       };
+    #     };
+    #   };
+    # };
+
+    zramSwap.enable = true;
   };
 }
