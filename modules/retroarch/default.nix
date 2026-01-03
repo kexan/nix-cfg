@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.gaming =
+    homeManager.retroarch =
       {
         lib,
         config,
@@ -8,6 +8,26 @@
       }:
       {
         programs = {
+          retroarch = {
+            enable = true;
+
+            cores = {
+              swanstation.enable = true;
+              ppsspp.enable = true;
+              dolphin.enable = true;
+            };
+
+            settings = {
+              video_driver = "vulkan";
+              video_fullscreen = "false";
+              video_window_custom_size_enable = "true";
+              video_windowed_position_width = "2560";
+              video_windowed_position_height = "1440";
+              pause_content_when_not_active = "false";
+              menu_driver = "xmb";
+            };
+          };
+
           plasma = lib.mkIf (config.programs.plasma.enable or false) {
             window-rules = [
               {
@@ -27,26 +47,6 @@
                 };
               }
             ];
-          };
-
-          retroarch = {
-            enable = true;
-
-            cores = {
-              swanstation.enable = true;
-              ppsspp.enable = true;
-              dolphin.enable = true;
-            };
-
-            settings = {
-              video_driver = "vulkan";
-              video_fullscreen = "false";
-              video_window_custom_size_enable = "true";
-              video_windowed_position_width = "2560";
-              video_windowed_position_height = "1440";
-              pause_content_when_not_active = "false";
-              menu_driver = "xmb";
-            };
           };
         };
       };

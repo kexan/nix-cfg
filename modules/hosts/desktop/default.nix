@@ -32,6 +32,7 @@
               ai
               dev
               messaging
+              retroarch
               zen-browser
             ];
           };
