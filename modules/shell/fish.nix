@@ -7,8 +7,7 @@
           enable = true;
         };
 
-        #FIXME: regression in unstable: https://github.com/nix-community/home-manager/issues/8435
-        users.defaultUserShell = pkgs.master.fish;
+        users.defaultUserShell = pkgs.fish;
       };
 
     homeManager.shell =
@@ -18,9 +17,6 @@
 
         programs.fish = {
           enable = true;
-
-          #FIXME: regression in unstable: https://github.com/nix-community/home-manager/issues/8435
-          package = pkgs.master.fish;
 
           shellAliases = {
             cd = "z";

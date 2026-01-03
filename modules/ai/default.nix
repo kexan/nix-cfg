@@ -3,7 +3,7 @@
     homeManager.ai =
       { pkgs, ... }:
       {
-        home.packages = [ pkgs.master.qwen-code ];
+        home.packages = [ pkgs.qwen-code ];
       };
   };
 }
