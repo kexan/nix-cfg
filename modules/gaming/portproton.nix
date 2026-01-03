@@ -10,11 +10,8 @@
       {
         imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
-        services.flatpak = {
-          enable = lib.mkDefault true;
-          packages = lib.mkIf config.services.flatpak.enable [
-            "ru.linux_gaming.PortProton"
-          ];
+        services.flatpak = lib.mkIf config.services.flatpak.enable {
+          packages = [ "ru.linux_gaming.PortProton" ];
         };
 
         warnings = lib.mkIf (!config.services.flatpak.enable) [
