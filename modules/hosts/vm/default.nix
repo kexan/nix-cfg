@@ -21,7 +21,7 @@
         {
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
-              dev
+              lazyvim
               zen-browser
             ];
           };

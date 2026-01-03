@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.dev = {
+    homeManager.shell = {
       programs = {
         lazygit = {
           enable = true;

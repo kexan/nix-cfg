@@ -31,7 +31,7 @@
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
               ai
-              dev
+              lazyvim
               messaging
               retroarch
               zen-browser

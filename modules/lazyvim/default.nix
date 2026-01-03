@@ -2,7 +2,7 @@
 
 {
   flake.modules = {
-    homeManager.dev =
+    homeManager.lazyvim =
       { pkgs, ... }:
 
       {

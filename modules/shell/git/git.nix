@@ -1,6 +1,6 @@
 topLevel: {
   flake.modules = {
-    homeManager.dev =
+    homeManager.shell =
       { config, ... }:
       {
         programs = {
