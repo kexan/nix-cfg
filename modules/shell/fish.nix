@@ -18,12 +18,6 @@
         programs.fish = {
           enable = true;
 
-          shellAliases = {
-            cd = "z";
-            cat = "bat";
-            grep = "rg";
-          };
-
           functions = {
             last_history_item = ''
               echo $history[1]
