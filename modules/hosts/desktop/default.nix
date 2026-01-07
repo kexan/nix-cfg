@@ -8,21 +8,34 @@
     imports =
       with config.flake.modules.nixos;
       [
+        # --- Core & System ---
         base
-        #btrfs
-        corectrl
-        sops
-        desktop
-        plasma
-        sound
         shell
         openssh
-        podman
-        virtualbox
+        sops
+        #btrfs
+
+        # --- Hardware ---
+        sound
+        corectrl
+
+        # --- Desktop Environment ---
+        desktop
+        plasma
         flatpak
-        gaming
+
+        # --- Network ---
         vpn
         winbox
+
+        # --- Virtualization ---
+        podman
+        virtualbox
+
+        # --- Gaming ---
+        gaming
+
+        # --- Users ---
         kexan
       ]
 

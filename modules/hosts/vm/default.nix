@@ -8,11 +8,16 @@
     imports =
       with config.flake.modules.nixos;
       [
+        # --- Core & System ---
         base
-        desktop
-        plasma
         shell
         openssh
+
+        # --- Desktop Environment ---
+        desktop
+        plasma
+
+        # --- Users ---
         kexan
       ]
 
@@ -27,7 +32,6 @@
           };
         }
       ];
-
     hardware.facter.reportPath = ./facter.json;
 
     disko.devices = {
