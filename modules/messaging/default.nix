@@ -6,10 +6,8 @@
         home.packages = with pkgs; [
           telegram-desktop
         ];
-        programs.vesktop = {
-          enable = true;
-          package = pkgs.master.vesktop;
-        };
+
+        programs.vesktop.enable = true;
       };
   };
 }

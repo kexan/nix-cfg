@@ -22,6 +22,7 @@
         flatpak
         gaming
         vpn
+        winbox
         kexan
       ]
 
