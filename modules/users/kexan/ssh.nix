@@ -52,6 +52,11 @@ in
             hostname = "5.53.126.212";
             user = "root";
           };
+
+          "mikrotik" = {
+            hostname = "192.168.88.1";
+            user = "admin";
+          };
         };
       };
     };
