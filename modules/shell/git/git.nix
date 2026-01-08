@@ -10,6 +10,11 @@ topLevel: {
               ".direnv/"
               "result"
             ];
+            signing = {
+              key = "~/.ssh/id_ed25519.pub";
+              signByDefault = true;
+              format = "ssh";
+            };
             settings = {
               user = {
                 inherit (topLevel.config.flake.meta.users.${config.home.username}) name;
