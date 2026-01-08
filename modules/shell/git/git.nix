@@ -35,9 +35,6 @@ topLevel: {
               diff = {
                 mnemonicprefix = true;
               };
-              include = {
-                path = "~/.gitconfig.local";
-              };
               init = {
                 defaultBranch = "main";
               };
@@ -65,9 +62,6 @@ topLevel: {
               };
               rerere = {
                 enabled = true;
-              };
-              sequence = {
-                editor = "code --wait";
               };
             };
           };
