@@ -12,10 +12,17 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.NIX_UPDATE_TOKEN }}
+          
       - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
       - uses: DeterminateSystems/update-flake-lock@main
         with:
+          token: ${{ secrets.NIX_UPDATE_TOKEN }}
           pr-title: "Chore: Update Nix flake inputs"
           pr-labels: |
             dependencies
             automated
+
