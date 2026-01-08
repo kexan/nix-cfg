@@ -3,14 +3,6 @@
   flake.modules = {
     nixos.plasma =
       { pkgs, ... }:
-
-      let
-        # Фикс маленького курсора в некоторых приложениях
-        breezeCursorDefaultTheme = pkgs.runCommandLocal "breeze-cursor-default-theme" { } ''
-          mkdir -p $out/share/icons
-          ln -s ${pkgs.kdePackages.breeze}/share/icons/breeze_cursors $out/share/icons/default
-        '';
-      in
       {
         services = {
           desktopManager.plasma6.enable = true;
@@ -28,7 +20,10 @@
 
           systemPackages = [
             pkgs.kdePackages.ksshaskpass
-            breezeCursorDefaultTheme
+            (pkgs.runCommand "breeze-cursor-fix" { } ''
+              mkdir -p $out/share/icons
+              ln -s ${pkgs.kdePackages.breeze}/share/icons/breeze_cursors $out/share/icons/default
+            '')
           ];
 
           sessionVariables = {
@@ -59,6 +54,8 @@
           inputs.plasma-manager.homeModules.plasma-manager
         ];
 
+        home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
+
         programs.plasma.enable = true;
 
         xdg.autostart.enable = true;
@@ -68,8 +65,6 @@
           kdePackages.krdc
           haruna
         ];
-
-        home.file.".icons/default".source = "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
       };
   };
 }
