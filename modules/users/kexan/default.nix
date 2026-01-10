@@ -31,11 +31,6 @@ in
           extraGroups = [
             "wheel"
             "networkmanager"
-            "podman"
-            "vboxusers"
-            "corectrl"
-            "video"
-            "render"
           ];
           openssh.authorizedKeys.keys = meta.authorizedKeys;
           initialPassword = "id";
