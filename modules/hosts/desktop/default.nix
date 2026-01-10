@@ -29,11 +29,13 @@
         winbox
 
         # --- Virtualization ---
-        podman
         virtualbox
 
         # --- Gaming ---
         gaming
+
+        # --- Services ---
+        jellyfin
 
         # --- Users ---
         kexan
@@ -65,12 +67,6 @@
           "yg.yougile.local"
         ];
       };
-
-      firewall.allowedTCPPorts = [
-        #jellyfin port
-        8096
-      ];
-
     };
 
     hardware.facter.reportPath = ./facter.json;

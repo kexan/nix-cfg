@@ -29,7 +29,6 @@
         winbox
 
         # --- Virtualization ---
-        podman
         virtualbox
 
         # --- Gaming ---
