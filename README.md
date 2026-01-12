@@ -17,16 +17,16 @@ A dendritic approach structures configuration modules in a branching, tree-like 
 
 My configuration distinguishes between three types of modules based on their scope.
 
-> **⚠️ Shared Modules** act as "full-stack" bundles. When you import a shared module (e.g., `plasma`) into a NixOS configuration, it **automatically configures** the corresponding Home Manager settings for users.
->
-> *   **On NixOS:** Import **ONLY** the NixOS module. Do not import the HM module manually to avoid conflicts.
-> *   **On Standalone Home Manager:** You can safely import the HM part of a shared module to get the user-space configuration (without system-level services).
-
 | Type | Description | Modules |
 | :--- | :--- | :--- |
 | **Shared**<br>*(Hybrid)* | Features with both system and user components. <br>• **NixOS import:** Configures system + user env.<br>• **HM import:** Configures user env only. | `gnome`, `kexan`, `niri`, `plasma`, `shell` |
 | **NixOS Only**<br>*(System)* | System services, hardware, networking, and virtualization. Cannot be used in standalone HM. | `base`, `btrfs`, `corectrl`, `desktop`, `docker`, `gaming`, `jellyfin`, `openssh`, `podman`, `sops`, `sound`, `virtualbox`, `vpn`, `winbox` |
 | **Home Manager Only**<br>*(User)* | User-space apps and configs. Universal, works on any Linux/macOS with HM. | `ai`, `lazyvim`, `messaging`, `retroarch`, `zen-browser` |
+
+> **⚠️ Shared Modules** act as "full-stack" bundles. When you import a shared module (e.g., `plasma`) into a NixOS configuration, it **automatically configures** the corresponding Home Manager settings for users.
+>
+> *   **On NixOS:** Import **ONLY** the NixOS module. Do not import the HM module manually to avoid conflicts.
+> *   **On Standalone Home Manager:** You can safely import the HM part of a shared module to get the user-space configuration (without system-level services).
 
 ## 🖥️ Hosts
 
