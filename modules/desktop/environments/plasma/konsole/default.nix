@@ -19,6 +19,16 @@
             };
           };
         };
+
+        #FIXME: hacky way to hide toolbar
+        xdg.dataFile."kxmlgui5/konsole/konsoleui.rc".text = ''
+          <!DOCTYPE gui>
+          <gui name="konsole" version="19">
+            <ToolBar name="mainToolBar" hidden="true">
+              <text>Main Toolbar</text>
+            </ToolBar>
+          </gui>
+        '';
       };
   };
 }
