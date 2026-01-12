@@ -90,6 +90,26 @@ flake.modules.nixos."hosts/desktop" = {
 };
 ```
 
+## 🛠️ Development Workflow
+
+This flake includes a pre-configured `devShell` with custom aliases to simplify daily operations.
+Just enter the directory (with `direnv` enabled) or run `nix develop` to access them.
+
+| Command | Description | Under the hood |
+| :--- | :--- | :--- |
+| `modules` | **List all available modules**<br>Scans the flake structure and groups modules by type (Shared, NixOS, Home Manager). | `nix eval` + `jq` magic |
+| `apply [host]` | **Apply configuration**<br>Rebuilds and switches the system. Defaults to current hostname if argument omitted. | `nh os switch -H <host>` |
+| `build [host]` | **Build without switching**<br>Use this to test if your code compiles correctly. | `nh os build -H <host>` |
+| `boot [host]` | **Build and set as boot**<br>Updates the bootloader entry without switching runtime immediately. | `nh os boot -H <host>` |
+| `update` | **Update flake inputs**<br>Updates `flake.lock` to the latest versions. | `nix flake update` |
+| `check` | **Verify flake integrity**<br>Runs checks to ensure the flake is valid. | `nix flake check` |
+| `sops <file>` | **Edit secrets**<br>Opens the encrypted file with your `$EDITOR`. Automatically handles keys location. | `sops <file>` |
+
+> **Tip:** You don't need to specify `[host]` if you are running the command on the target machine itself.
+>
+> Example: Running `apply` on the machine named **desktop** is equivalent to running `apply desktop` (or `nh os switch -H desktop`).
+
+
 <details>
 <summary><h2>🚀 Deployment</h2></summary>
 
