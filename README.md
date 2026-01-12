@@ -28,13 +28,67 @@ My configuration distinguishes between three types of modules based on their sco
 > *   **On NixOS:** Import **ONLY** the NixOS module. Do not import the HM module manually to avoid conflicts.
 > *   **On Standalone Home Manager:** You can safely import the HM part of a shared module to get the user-space configuration (without system-level services).
 
-## 🖥️ Hosts
 
-| Hostname    | Description | Device |
-| ----------- | ----------- | ------ |
-| `desktop`   | Main Workstation | Desktop (Ryzen 7 7700 + RX 7700 XT) |
-| `redmibook` | Laptop | Redmibook Pro 14 (Intel Ultra 5 255H) |
-| `vm`        | Testing VM | QEMU/KVM |
+## 📝 Configuration Example
+
+Here is the actual configuration for the `desktop` host. It demonstrates how to assemble a system using the modular structure.
+
+Note how **System/Shared** modules are imported directly, while **Home Manager Only** modules (like `lazyvim` or `zen-browser`) are injected specifically into the user's scope.
+
+```nix
+flake.modules.nixos."hosts/desktop" = {
+  imports =
+    with config.flake.modules.nixos;
+    [
+      # --- Core & System ---
+      base
+      shell
+      openssh
+      sops
+      #btrfs
+
+      # --- Hardware ---
+      sound
+      corectrl
+
+      # --- Desktop Environment ---
+      desktop
+      plasma
+      flatpak
+
+      # --- Network ---
+      vpn
+      winbox
+
+      # --- Virtualization ---
+      virtualbox
+
+      # --- Gaming ---
+      gaming
+
+      # --- Services ---
+      jellyfin
+
+      # --- Users ---
+      kexan
+    ]
+
+    # Specific Home-Manager modules
+    ++ [
+      {
+        home-manager.users.kexan = {
+          imports = with config.flake.modules.homeManager; [
+            ai
+            lazyvim
+            messaging
+            retroarch
+            zen-browser
+          ];
+        };
+      }
+    ];
+};
+```
 
 <details>
 <summary><h2>🚀 Deployment</h2></summary>
