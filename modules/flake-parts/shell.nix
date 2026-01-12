@@ -68,6 +68,7 @@
           EXPR="
             let
               flake = builtins.getFlake \"$ROOT_PATH\";
+              
               isPublic = name: 
                 let 
                    firstChar = builtins.substring 0 1 name;
@@ -80,26 +81,49 @@
                 if builtins.isAttrs set 
                 then builtins.filter isPublic (builtins.attrNames set)
                 else [];
-            in
-            {
+                
               nixos = getPublicModules (flake.modules.nixos or {});
               home = getPublicModules (flake.modules.homeManager or {});
+            in
+            {
+              nixos = nixos;
+              home = home;
             }
           "
 
           JSON=$(nix eval --json --impure --expr "$EXPR")
 
           echo ""
-          echo -e "\033[1;34m NixOS Modules:\033[0m"
-          echo "$JSON" | jq -r '(.nixos // [])[]' | sort | while read -r module; do
-              echo "  • $module"
-          done
 
-          echo ""
-          echo -e "\033[1;35m Home Manager Modules:\033[0m"
-          echo "$JSON" | jq -r '(.home // [])[]' | sort | while read -r module; do
-              echo "  • $module"
-          done
+          SHARED=$(echo "$JSON" | jq -r '(.nixos // []) as $n | (.home // []) as $h | ($n - ($n - $h))[]' | sort)
+
+          if [ -n "$SHARED" ]; then
+            echo -e "\033[1;33m Shared Modules (Has both NixOS + Home Manager):\033[0m"
+            echo "$SHARED" | while read -r module; do
+                echo "  • $module"
+            done
+            echo ""
+          fi
+
+          NIXOS_ONLY=$(echo "$JSON" | jq -r '(.nixos // []) - (.home // []) | .[]' | sort)
+
+          if [ -n "$NIXOS_ONLY" ]; then
+            echo -e "\033[1;34m NixOS Only:\033[0m"
+            echo "$NIXOS_ONLY" | while read -r module; do
+                echo "  • $module"
+            done
+            echo ""
+          fi
+
+          HOME_ONLY=$(echo "$JSON" | jq -r '(.home // []) - (.nixos // []) | .[]' | sort)
+
+          if [ -n "$HOME_ONLY" ]; then
+            echo -e "\033[1;35m Home Manager Only:\033[0m"
+            echo "$HOME_ONLY" | while read -r module; do
+                echo "  • $module"
+            done
+            echo ""
+          fi
         '';
       };
     in
