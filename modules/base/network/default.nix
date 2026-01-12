@@ -5,10 +5,7 @@
       networking = {
         hostName = hostConfig.name;
 
-        networkmanager = {
-          enable = true;
-          plugins = [ pkgs.networkmanager-openvpn ];
-        };
+        networkmanager.enable = true;
 
         useDHCP = false;
       };
