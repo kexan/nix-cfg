@@ -1,11 +1,16 @@
 {
   flake.modules = {
     nixos.jellyfin =
-      { inputs, ... }:
+      { lib, config, ... }:
+
+      let
+        localDomain = "jellyfin.lan";
+        caddyEnabled = config.services.caddy.enable or false;
+      in
       {
         services.jellyfin = {
           enable = true;
-          openFirewall = true;
+          openFirewall = !caddyEnabled;
           hardwareAcceleration = {
             enable = true;
             type = "vaapi";
@@ -23,6 +28,14 @@
               h264 = true;
               av1 = true;
             };
+          };
+        };
+
+        services.caddy = lib.mkIf caddyEnabled {
+          virtualHosts."http://${localDomain}" = {
+            extraConfig = ''
+              reverse_proxy 127.0.0.1:8096
+            '';
           };
         };
       };

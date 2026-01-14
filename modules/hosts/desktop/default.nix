@@ -35,6 +35,7 @@
         gaming
 
         # --- Services ---
+        caddy
         jellyfin
 
         # --- Users ---
