@@ -4,10 +4,12 @@
       {
         lib,
         config,
-        inputs,
-        pkgs,
         ...
       }:
+
+      let
+        plasmaEnabled = config.services.desktopManager.plasma6.enable;
+      in
       {
 
         services = {
@@ -30,8 +32,7 @@
           };
         };
 
-        security.pam.services.ly.enableKwallet =
-          lib.mkIf config.services.desktopManager.plasma6.enable true;
+        security.pam.services.ly.enableKwallet = lib.mkIf plasmaEnabled true;
       };
   };
 }

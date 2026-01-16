@@ -6,10 +6,12 @@
         config,
         ...
       }:
+
+      let
+        vboxEnabled = config.virtualisation.virtualbox.host.enable or false;
+      in
       {
-        config = lib.mkIf (config.virtualisation.virtualbox.host.enable or false) {
-          users.users.kexan.extraGroups = [ "vboxusers" ];
-        };
+        users.users.kexan.extraGroups = lib.mkIf vboxEnabled [ "vboxusers" ];
       };
   };
 }

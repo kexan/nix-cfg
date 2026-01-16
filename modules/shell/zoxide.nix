@@ -2,6 +2,10 @@
   flake.modules = {
     homeManager.shell =
       { lib, config, ... }:
+
+      let
+        fishEnabled = config.programs.fish.enable;
+      in
       {
         programs = {
           zoxide = {
@@ -9,7 +13,7 @@
             enableFishIntegration = true;
           };
 
-          fish.shellAliases = lib.mkIf config.programs.fish.enable {
+          fish.shellAliases = lib.mkIf fishEnabled {
             cd = "z";
           };
         };

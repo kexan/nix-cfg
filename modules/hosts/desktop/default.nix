@@ -38,6 +38,7 @@
         caddy
         jellyfin
         qbittorrent
+        samba
 
         # --- Users ---
         kexan

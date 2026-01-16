@@ -11,11 +11,15 @@ in
         config,
         ...
       }:
+
+      let
+        sopsEnabled = config.sops.enable or false;
+      in
       {
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
-        config = lib.mkIf (config.sops.enable or false) {
-          sops.secrets.ssh_key = {
+        sops = lib.mkIf sopsEnabled {
+          secrets.ssh_key = {
             path = "/home/${meta.username}/.ssh/id_ed25519";
             owner = meta.username;
             group = "users";

@@ -6,10 +6,12 @@
         config,
         ...
       }:
+
+      let
+        corectrlEnabled = config.programs.corectrl.enable or false;
+      in
       {
-        config = lib.mkIf (config.programs.corectrl.enable or false) {
-          users.users.kexan.extraGroups = [ "corectrl" ];
-        };
+        users.users.kexan.extraGroups = lib.mkIf corectrlEnabled [ "corectrl" ];
       };
   };
 }

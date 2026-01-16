@@ -11,8 +11,12 @@ in
         config,
         ...
       }:
+
+      let
+        qbittorrentEnabled = config.services.qbittorrent.enable or false;
+      in
       {
-        config = lib.mkIf (config.services.qbittorrent.enable or false) {
+        config = lib.mkIf qbittorrentEnabled {
           users.users.kexan.extraGroups = [ "qbittorrent" ];
 
           systemd.tmpfiles.rules = [

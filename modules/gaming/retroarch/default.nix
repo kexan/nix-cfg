@@ -7,6 +7,10 @@
         config,
         ...
       }:
+
+      let
+        plasmaEnabled = config.programs.plasma.enable or false;
+      in
       {
         imports = [
           inputs.plasma-manager.homeModules.plasma-manager
@@ -33,7 +37,7 @@
             };
           };
 
-          plasma = lib.mkIf (config.programs.plasma.enable or false) {
+          plasma = lib.mkIf plasmaEnabled {
             window-rules = [
               {
                 description = "Fullscreen hack for com.libretro.RetroArch";

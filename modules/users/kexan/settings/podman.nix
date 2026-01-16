@@ -6,10 +6,12 @@
         config,
         ...
       }:
+
+      let
+        podmanEnabled = config.virtualisation.podman.enable or false;
+      in
       {
-        config = lib.mkIf (config.virtualisation.podman.enable or false) {
-          users.users.kexan.extraGroups = [ "podman" ];
-        };
+        users.users.kexan.extraGroups = lib.mkIf podmanEnabled [ "podman" ];
       };
   };
 }

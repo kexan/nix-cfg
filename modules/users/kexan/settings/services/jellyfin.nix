@@ -12,8 +12,12 @@ in
         pkgs,
         ...
       }:
+
+      let
+        jellyfinEnabled = config.services.jellyfin.enable or false;
+      in
       {
-        config = lib.mkIf (config.services.jellyfin.enable or false) {
+        config = lib.mkIf jellyfinEnabled {
           environment.systemPackages = [ pkgs.bindfs ];
 
           systemd.tmpfiles.rules = [

@@ -6,6 +6,10 @@
 {
   flake.modules.homeManager.zen-browser =
     { lib, config, ... }:
+
+    let
+      plasmaEnabled = config.programs.plasma.enable or false;
+    in
     {
       imports = [
         inputs.zen-browser.homeModules.beta
@@ -54,7 +58,7 @@
         };
       };
 
-      programs.plasma = lib.mkIf (config.programs.plasma.enable or false) {
+      programs.plasma = lib.mkIf plasmaEnabled {
         shortcuts = {
           "services/zen-beta.desktop"._launch = "Meta+Z";
         };

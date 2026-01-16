@@ -1,9 +1,11 @@
 {
   flake.modules.nixos.kexan =
     { lib, config, ... }:
+
+    let
+      dockerEnabled = config.virtualisation.docker.enable or false;
+    in
     {
-      config = lib.mkIf (config.virtualisation.docker.enable or false) {
-        users.users.kexan.extraGroups = [ "docker" ];
-      };
+      users.users.kexan.extraGroups = lib.mkIf dockerEnabled [ "docker" ];
     };
 }
