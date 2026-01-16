@@ -37,6 +37,7 @@
         # --- Services ---
         caddy
         jellyfin
+        qbittorrent
 
         # --- Users ---
         kexan
