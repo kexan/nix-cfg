@@ -178,6 +178,14 @@
             position = 263;
             editedTitle = true;
           };
+          "Work: Kimi" = {
+            id = "p2000013-0000-0000-0000-000000000013";
+            url = "https://chatgpt.com/";
+            workspace = spaceWorkId;
+            folderParentId = folderWorkUtilsId;
+            position = 264;
+            editedTitle = true;
+          };
         };
       };
 

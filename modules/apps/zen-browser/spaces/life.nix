@@ -91,6 +91,14 @@
             position = 133;
             editedTitle = true;
           };
+          "Kimi" = {
+            id = "p1000007-0000-0000-0000-000000000007";
+            url = "https://chatgpt.com/";
+            workspace = spaceLifeId;
+            folderParentId = folderLifeUtilsId;
+            position = 134;
+            editedTitle = true;
+          };
         };
       };
 

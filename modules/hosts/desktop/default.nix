@@ -61,11 +61,11 @@
 
     networking = {
       hosts = {
-        "192.168.1.100" = [
+        "192.168.10.100" = [
           "linuxservice.test"
           "yg.linuxservice.test"
         ];
-        "192.168.1.101" = [
+        "192.168.10.101" = [
           "yougile.local"
           "yg.yougile.local"
         ];
