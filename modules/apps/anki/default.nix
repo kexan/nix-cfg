@@ -1,16 +1,42 @@
 {
   flake.modules = {
     homeManager.anki =
-      { pkgs, ... }:
       {
-        programs.anki = {
-          enable = true;
-          addons = [ pkgs.ankiAddons.anki-connect ];
+        inputs,
+        pkgs,
+        lib,
+        config,
+        ...
+      }:
+      let
+        sopsEnabled = config.sops.enable or false;
+      in
+      {
+        imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
-          language = "ru_RU";
-          theme = "followSystem";
-          style = "native";
-        };
+        config = lib.mkMerge [
+          {
+            programs.anki = {
+              enable = true;
+              addons = [ pkgs.ankiAddons.anki-connect ];
+
+              language = "ru_RU";
+              theme = "followSystem";
+              style = "native";
+            };
+          }
+
+          (lib.mkIf sopsEnabled {
+            sops.secrets = {
+              "anki/username" = { };
+              "anki/key" = { };
+            };
+            programs.anki.sync = {
+              usernameFile = config.sops.secrets."anki/username".path;
+              keyFile = config.sops.secrets."anki/key".path;
+            };
+          })
+        ];
       };
   };
 }
