@@ -50,6 +50,7 @@
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
               ai
+              anki
               lazyvim
               messaging
               retroarch

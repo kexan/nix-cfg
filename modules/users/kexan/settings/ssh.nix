@@ -58,7 +58,7 @@ in
           };
 
           "mikrotik" = {
-            hostname = "192.168.88.1";
+            hostname = "192.168.10.1";
             user = "admin";
           };
         };
