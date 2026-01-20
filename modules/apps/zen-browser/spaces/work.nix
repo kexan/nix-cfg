@@ -154,14 +154,6 @@
             isGroup = true;
             position = 260;
           };
-          "Work: Perplexity" = {
-            id = "p2000010-0000-0000-0000-000000000010";
-            url = "https://www.perplexity.ai/";
-            workspace = spaceWorkId;
-            folderParentId = folderWorkUtilsId;
-            position = 261;
-            editedTitle = true;
-          };
           "Work: Qwen" = {
             id = "p2000011-0000-0000-0000-000000000011";
             url = "https://chat.qwen.ai/";
@@ -180,7 +172,7 @@
           };
           "Work: Kimi" = {
             id = "p2000013-0000-0000-0000-000000000013";
-            url = "https://chatgpt.com/";
+            url = "https://www.kimi.com/";
             workspace = spaceWorkId;
             folderParentId = folderWorkUtilsId;
             position = 264;

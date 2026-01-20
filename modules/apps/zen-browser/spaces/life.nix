@@ -66,15 +66,6 @@
             isGroup = true;
             position = 130;
           };
-
-          "Perplexity" = {
-            id = "p1000004-0000-0000-0000-000000000004";
-            url = "https://www.perplexity.ai/";
-            workspace = spaceLifeId;
-            folderParentId = folderLifeUtilsId;
-            position = 131;
-            editedTitle = true;
-          };
           "Qwen" = {
             id = "p1000005-0000-0000-0000-000000000005";
             url = "https://chat.qwen.ai/";
@@ -93,7 +84,7 @@
           };
           "Kimi" = {
             id = "p1000007-0000-0000-0000-000000000007";
-            url = "https://chatgpt.com/";
+            url = "https://www.kimi.com/";
             workspace = spaceLifeId;
             folderParentId = folderLifeUtilsId;
             position = 134;
