@@ -24,21 +24,39 @@ in
     };
 
     modules.nixos.kexan =
-      { inputs, ... }:
       {
-        users.users.kexan = {
-          description = meta.name;
-          isNormalUser = true;
-          createHome = true;
-          extraGroups = [
-            "wheel"
-            "networkmanager"
-          ];
-          openssh.authorizedKeys.keys = meta.authorizedKeys;
-          initialPassword = "id";
-        };
+        inputs,
+        lib,
+        config,
+        ...
+      }:
+      let
+        sopsEnabled = config.sops.enable or false;
+      in
+      {
+        users.users.kexan =
+          {
+            description = meta.name;
+            isNormalUser = true;
+            createHome = true;
+            extraGroups = [
+              "wheel"
+              "networkmanager"
+            ];
+            openssh.authorizedKeys.keys = meta.authorizedKeys;
+          }
+          // lib.optionalAttrs sopsEnabled {
+            hashedPasswordFile = config.sops.secrets."users/kexan/password".path;
+          };
 
         nix.settings.trusted-users = [ meta.username ];
+
+        sops.secrets."users/kexan/password" = lib.mkIf sopsEnabled {
+          neededForUsers = true;
+          owner = "root";
+          group = "root";
+          mode = "0400";
+        };
 
         home-manager.sharedModules = [
           inputs.self.modules.homeManager.kexan

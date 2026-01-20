@@ -188,18 +188,23 @@ You cannot use the existing `secrets/secrets.yaml` because it is encrypted with 
 
 2. **Generate your Age key:**
    ```bash
-   mkdir -p ~/.config/sops/age
-   age-keygen -o ~/.config/sops/age/keys.txt
+   mkdir -p ~/.config/sops
+   age-keygen -o ~/.config/sops/key.txt
    ```
 
 3. **Update Configuration:**
-   *   Get your public key (it starts with `age1...` in the `keys.txt` file).
+   *   Get your public key (it starts with `age1...` in the `key.txt` file).
    *   Edit `.sops.yaml`: Replace my keys with your new public key.
 
 4. **Recreate Secrets:**
    Create a new secrets file with the required structure:
    ```bash
    sops secrets/secrets.yaml
+   ```
+
+   For example, ensure you define `users/kexan/password` as a **hashed** password (e.g., `mkpasswd -m sha-512`) for the `kexan` user.
+   ```bash
+   mkpasswd -m sha-512
    ```
 
 </details>
