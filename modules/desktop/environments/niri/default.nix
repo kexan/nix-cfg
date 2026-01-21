@@ -1,7 +1,7 @@
 {
   flake.modules = {
     nixos.niri =
-      { inputs, ... }:
+      { inputs, pkgs, ... }:
       {
         programs = {
           niri = {
@@ -15,6 +15,16 @@
         home-manager.sharedModules = [
           inputs.self.modules.homeManager.niri
         ];
+
+        xdg = {
+          autostart.enable = true;
+
+          portal = {
+            enable = true;
+            config.common.default = "gtk";
+            extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+          };
+        };
       };
 
     homeManager.niri =
