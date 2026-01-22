@@ -56,6 +56,7 @@
               messaging
               retroarch
               zen-browser
+              bitwig
             ];
           };
         }

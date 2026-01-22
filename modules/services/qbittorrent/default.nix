@@ -33,7 +33,11 @@
               PortForwardingEnabled = false;
             };
             BitTorrent = {
-              Session.DisableAutoTMMByDefault = false;
+              Session = {
+                AlternativeGlobalDLSpeedLimit = 6000;
+                AlternativeGlobalUPSpeedLimit = 6000;
+                DisableAutoTMMByDefault = false;
+              };
             };
             Preferences = {
               General.Locale = "ru";
