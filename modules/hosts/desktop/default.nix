@@ -39,6 +39,7 @@
         jellyfin
         qbittorrent
         samba
+        tailscale
 
         # --- Users ---
         kexan
