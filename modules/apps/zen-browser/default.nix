@@ -26,8 +26,8 @@
             "browser.aboutConfig.showWarning" = false;
             "browser.search.region" = "RU";
             "browser.search.suggest.enabled" = true;
-            "browser.urlbar.placeholderName" = "Google";
-            "browser.urlbar.placeholderName.private" = "Google";
+            "browser.urlbar.placeholderName" = "DuckDuckGo";
+            "browser.urlbar.placeholderName.private" = "DuckDuckGo";
             "browser.translations.automaticallyPopup" = false;
             "intl.locale.requested" = "ru,en-US";
             "intl.regional_prefs.use_os_locales" = true;

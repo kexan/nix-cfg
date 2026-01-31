@@ -20,7 +20,7 @@
             repo = "anki21-addons_minimize-to-tray";
             rev = finalAttrs.version;
             sparseCheckout = [ "src" ];
-            hash = "sha256-REoh97eUSqlkLvFkcsj2IHDFT3McnfBXlNz61o1omys=";
+            hash = "sha256-/87tH9nXyNSUqaI+bKhZ6vBqRA/OdloGTfmckFnRS3w=";
           };
           sourceRoot = "${finalAttrs.src.name}/src";
 
