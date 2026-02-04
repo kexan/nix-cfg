@@ -41,6 +41,7 @@
         samba
         tailscale
 
+        ocr
         # --- Users ---
         kexan
       ]
