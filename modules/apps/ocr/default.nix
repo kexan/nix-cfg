@@ -24,7 +24,7 @@
             pkgs.coreutils
             pkgs.gnused
             pkgs.websocat
-            pkgs.coreutils
+            pkgs.perl
           ];
           text = ''
             set -euo pipefail
@@ -52,6 +52,8 @@
               rm -f "$TEMP_IMG" "$TEMP_JSON"
               exit 0
             fi
+
+            text=$(printf '%s' "$text" | perl -CSDA -pe 's/[\p{Z}\s\x{200B}\x{200C}\x{200D}\x{2060}\x{FEFF}]+//g')
 
             echo -n "$text" | wl-copy
             echo "$text"
