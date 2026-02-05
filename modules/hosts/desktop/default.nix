@@ -41,7 +41,6 @@
         samba
         tailscale
 
-        ocr
         # --- Users ---
         kexan
       ]
@@ -58,6 +57,7 @@
               retroarch
               zen-browser
               bitwig
+              ocr
             ];
           };
         }

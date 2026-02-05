@@ -1,7 +1,14 @@
+{ inputs, ... }:
+
 {
   flake.modules = {
-    nixos.ocr =
-      { inputs, pkgs, ... }:
+    homeManager.ocr =
+      {
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
 
       let
         nbocr = inputs.newbee-ocr.packages.${pkgs.stdenv.hostPlatform.system}.newbee-ocr-cli;
@@ -16,6 +23,8 @@
             pkgs.libnotify
             pkgs.coreutils
             pkgs.gnused
+            pkgs.websocat
+            pkgs.coreutils
           ];
           text = ''
             set -euo pipefail
@@ -47,6 +56,10 @@
             echo -n "$text" | wl-copy
             echo "$text"
 
+            if command -v websocat >/dev/null 2>&1; then
+              printf '%s' "$text" | timeout 2s websocat -1 -t ws://127.0.0.1:6677 >/dev/null 2>&1 || true
+            fi
+
             if command -v notify-send >/dev/null 2>&1; then
               chars="''${#text}"
               preview=$(echo "$text" | cut -c1-50)
@@ -56,12 +69,35 @@
             rm -f "$TEMP_IMG" "$TEMP_JSON"
           '';
         };
+
+        plasmaEnabled = config.programs.plasma.enable or false;
       in
       {
-        environment.systemPackages = [
+        home.packages = [
           nbocr
           ocr
         ];
+
+        systemd.user.services.ocr-ws = {
+          Unit = {
+            Description = "OCR WebSocket broadcast server (ws://127.0.0.1:6677)";
+            After = [ "network.target" ];
+          };
+          Service = {
+            ExecStart = "${pkgs.websocat}/bin/websocat -t ws-l:127.0.0.1:6677 broadcast:mirror:";
+            Restart = "always";
+            RestartSec = 1;
+          };
+          Install = {
+            WantedBy = [ "default.target" ];
+          };
+        };
+
+        programs.plasma = lib.mkIf plasmaEnabled {
+          shortcuts = {
+            "services/net.local.ocr.desktop"._launch = "Meta+O";
+          };
+        };
       };
   };
 }
