@@ -28,7 +28,7 @@
             };
 
             kscreenlockerrc = {
-              Daemon.RequirePassword = false;
+              Daemon.LockGrace = 300;
               Daemon.Timeout = 200;
             };
 
