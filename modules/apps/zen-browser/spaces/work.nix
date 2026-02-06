@@ -106,7 +106,7 @@
             position = 243;
           };
 
-          "Yougile 2.4" = {
+          "Yougile 2.5" = {
             id = "p2000006-0000-0000-0000-000000000006";
             url = "https://yg.linuxservice.test/";
             workspace = spaceWorkId;

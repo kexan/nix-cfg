@@ -14,6 +14,10 @@
             kcminputrc = {
               "Libinput/13364/53288/Keychron Keychron Ultra-Link 8K".NaturalScroll = true;
               "Libinput/13364/53288/Keychron Keychron Ultra-Link 8K".PointerAccelerationProfile = 1;
+
+              "Libinput/10182/480/GXTP7863:00 27C6:01E0 Touchpad".DisableWhileTyping = false;
+              "Libinput/10182/480/GXTP7863:00 27C6:01E0 Touchpad".NaturalScroll = true;
+              "Libinput/10182/480/GXTP7863:00 27C6:01E0 Touchpad".ScrollFactor = 0.5;
             };
 
             kdeglobals = {
@@ -47,7 +51,6 @@
                 FocusPolicy = "FocusFollowsMouse";
                 FocusStealingPreventionLevel = 1;
               };
-              Xwayland.Scale = 1.5;
               "org.kde.kdecoration2" = {
                 ButtonsOnLeft = "XI";
                 ButtonsOnRight = "SHM";

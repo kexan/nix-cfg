@@ -4,9 +4,8 @@
     {
       networking = {
         hostName = hostConfig.name;
-
         networkmanager.enable = true;
-
+        dhcpcd.enable = false;
         useDHCP = false;
       };
 

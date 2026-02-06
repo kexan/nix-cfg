@@ -17,7 +17,6 @@
 
         # --- Hardware ---
         sound
-        corectrl
 
         # --- Desktop Environment ---
         desktop
@@ -44,10 +43,12 @@
           home-manager.users.kexan = {
             imports = with config.flake.modules.homeManager; [
               ai
+              anki
               lazyvim
               messaging
               retroarch
               zen-browser
+              ocr
             ];
           };
         }

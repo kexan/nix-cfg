@@ -14,7 +14,7 @@
               "Switch to Desktop 5" = "Meta+5";
               "Window Close" = "Meta+C";
             };
-            "services/org.kde.konsole.desktop"._launch = "Meta+Q";
+            "services/org.kde.konsole.desktop".NewWindow = "Meta+Q";
           };
 
           krunner.shortcuts.launch = "Meta+Space";
