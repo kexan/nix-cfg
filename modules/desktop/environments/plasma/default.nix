@@ -36,7 +36,17 @@
 
           portal = {
             enable = true;
-            config.common.default = "kde";
+            config = {
+              kde = {
+                default = [
+                  "kde"
+                  "gtk"
+                  "gnome"
+                ];
+                "org.freedesktop.portal.FileChooser" = [ "kde" ];
+                "org.freedesktop.portal.OpenURI" = [ "kde" ];
+              };
+            };
             extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
           };
         };
