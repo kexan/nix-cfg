@@ -32,7 +32,10 @@
           };
         };
 
-        security.pam.services.ly.enableKwallet = lib.mkIf plasmaEnabled true;
+        security.pam.services.ly = {
+          enableKwallet = lib.mkIf plasmaEnabled true;
+          fprintAuth = false;
+        };
       };
   };
 }
