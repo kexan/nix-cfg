@@ -17,6 +17,7 @@
 
         # --- Hardware ---
         sound
+        thermald
 
         # --- Desktop Environment ---
         desktop

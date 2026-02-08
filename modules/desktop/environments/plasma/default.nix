@@ -6,7 +6,6 @@
       {
         services = {
           desktopManager.plasma6.enable = true;
-          power-profiles-daemon.enable = true;
         };
 
         programs.ssh = {
