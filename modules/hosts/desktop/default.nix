@@ -18,7 +18,7 @@
         # --- Hardware ---
         sound
         corectrl
-        ppd
+        tuned
 
         # --- Desktop Environment ---
         desktop
