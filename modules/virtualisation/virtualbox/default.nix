@@ -8,6 +8,7 @@
 
       boot.blacklistedKernelModules = [
         "kvm_amd"
+        "kvm_intel"
         "kvm"
       ];
     };
