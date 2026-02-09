@@ -48,7 +48,6 @@
               anki
               lazyvim
               messaging
-              retroarch
               zen-browser
               ocr
             ];
