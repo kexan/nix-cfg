@@ -32,6 +32,9 @@
         # --- Virtualization ---
         virtualbox
 
+        # --- Services ---
+        tailscale
+
         # --- Gaming ---
         gaming
 
