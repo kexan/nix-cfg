@@ -17,6 +17,7 @@
           name = "ocr";
           runtimeInputs = [
             nbocr
+            pkgs.kdePackages.spectacle
             pkgs.flameshot
             pkgs.jq
             pkgs.wl-clipboard
@@ -34,9 +35,16 @@
             TEMP_IMG="$CACHE_DIR/screenshot.png"
             TEMP_JSON="$CACHE_DIR/result.json"
 
-            if ! flameshot gui --path "$TEMP_IMG" 2>/dev/null; then
-              echo "Скриншот отменен" >&2
-              exit 1
+            if [ "''${XDG_CURRENT_DESKTOP:-}" = "KDE" ] && command -v spectacle >/dev/null 2>&1; then
+              if ! spectacle --region --background --nonotify --output "$TEMP_IMG"; then
+                echo "Скриншот отменен" >&2
+                exit 1
+              fi
+            else
+              if ! flameshot gui --path "$TEMP_IMG" 2>/dev/null; then
+                echo "Скриншот отменен" >&2
+                exit 1
+              fi
             fi
 
             nbocr recognize -f json --precision fast -o "$TEMP_JSON" "$TEMP_IMG" 2>/dev/null || {
@@ -65,6 +73,7 @@
             if command -v notify-send >/dev/null 2>&1; then
               chars="''${#text}"
               preview=$(echo "$text" | cut -c1-50)
+              sleep 0.2
               notify-send "OCR Готово" "Скопировано $chars символов: $preview..." 2>/dev/null || true
             fi
 
