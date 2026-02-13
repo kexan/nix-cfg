@@ -29,9 +29,6 @@
         vpn
         winbox
 
-        # --- Virtualization ---
-        virtualbox
-
         # --- Services ---
         tailscale
 
