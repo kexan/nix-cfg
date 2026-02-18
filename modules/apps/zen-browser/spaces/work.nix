@@ -90,7 +90,7 @@
 
           "Yougile 2.2" = {
             id = "p2000005-0000-0000-0000-000000000005";
-            url = "https://yg.yougile.local/";
+            url = "http://yg.yougile.local/";
             workspace = spaceWorkId;
             folderParentId = folderWorkWinVmId;
             position = 242;

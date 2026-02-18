@@ -29,6 +29,9 @@
         vpn
         winbox
 
+        # --- Virtualisation ---
+        virtmanager
+
         # --- Services ---
         tailscale
 
