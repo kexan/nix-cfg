@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.zen-browser = {
-    programs.zen-browser.profiles.kexan =
+    programs.zen-browser.profiles.default =
       let
         spaceLifeId = "d1111111-e1f6-4a1b-8c9d-0e1f2a3b4c5d";
 

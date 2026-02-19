@@ -1,12 +1,10 @@
 {
   flake.modules.homeManager.zen-browser = {
-    programs.zen-browser.profiles.kexan =
+    programs.zen-browser.profiles.default =
       let
         spaceWorkId = "d2222222-b2a1-4098-8765-43210fedcba9";
 
         folderWorkTestingId = "f0000002-0000-0000-0000-000000000002";
-        folderWorkWinVmId = "f0000003-0000-0000-0000-000000000003";
-        folderWorkUbuVmId = "f0000004-0000-0000-0000-000000000004";
         folderWorkDocsId = "f0000005-0000-0000-0000-000000000005";
         folderWorkUtilsId = "f0000006-0000-0000-0000-000000000006";
       in
@@ -70,7 +68,6 @@
             editedTitle = true;
           };
 
-          #FIXME: subfolders is broken? https://github.com/0xc000022070/zen-browser-flake/issues/190
           # Folder "Тестирование"
           "Тестирование" = {
             id = folderWorkTestingId;
@@ -79,38 +76,20 @@
             position = 240;
           };
 
-          # Child folder "Windows Server VM"
-          "Windows Server VM" = {
-            id = folderWorkWinVmId;
-            workspace = spaceWorkId;
-            folderParentId = folderWorkTestingId;
-            isGroup = true;
-            position = 241;
-          };
-
-          "Yougile 2.2" = {
+          "Win Yougile 2.2" = {
             id = "p2000005-0000-0000-0000-000000000005";
             url = "http://yg.yougile.local/";
             workspace = spaceWorkId;
-            folderParentId = folderWorkWinVmId;
+            folderParentId = folderWorkTestingId;
             position = 242;
             editedTitle = true;
           };
 
-          # Child folder "Ubuntu Server VM"
-          "Ubuntu Server VM" = {
-            id = folderWorkUbuVmId;
-            workspace = spaceWorkId;
-            folderParentId = folderWorkTestingId;
-            isGroup = true;
-            position = 243;
-          };
-
-          "Yougile 2.5" = {
+          "Ubuntu Yougile 2.5" = {
             id = "p2000006-0000-0000-0000-000000000006";
             url = "https://yg.linuxservice.test/";
             workspace = spaceWorkId;
-            folderParentId = folderWorkUbuVmId;
+            folderParentId = folderWorkTestingId;
             position = 244;
             editedTitle = true;
           };

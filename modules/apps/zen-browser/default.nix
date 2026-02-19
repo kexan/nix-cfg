@@ -18,9 +18,10 @@
 
       programs.zen-browser = {
         enable = true;
-        profiles.kexan = {
-          spacesForce = true;
+        profiles.default = {
+          containersForce = true;
           pinsForce = true;
+          spacesForce = true;
 
           settings = {
             "browser.aboutConfig.showWarning" = false;
@@ -40,7 +41,6 @@
             "zen.welcome-screen.seen" = true;
           };
 
-          # === Essentials ===
           pins = {
             "YouTube" = {
               id = "e0000001-0000-0000-0000-000000000001";
