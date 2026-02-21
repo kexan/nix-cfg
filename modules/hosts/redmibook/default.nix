@@ -53,6 +53,7 @@
               messaging
               zen-browser
               ocr
+              zed
             ];
           };
         }
