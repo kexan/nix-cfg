@@ -1,14 +1,20 @@
 {
   flake.modules = {
-    homeManager.zed = {
-      programs.zed-editor = {
-        enable = true;
-        extensions = [
-          "nix"
-          "toml"
-          "rust"
-        ];
+    homeManager.zed =
+      { pkgs, ... }:
+      {
+        programs.zed-editor = {
+          enable = true;
+          extensions = [
+            "nix"
+            "toml"
+            "rust"
+          ];
+          extraPackages = with pkgs; [
+            nil
+            nixd
+          ];
+        };
       };
-    };
   };
 }

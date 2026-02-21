@@ -44,6 +44,13 @@
             position = 100;
             editedTitle = true;
           };
+          "Texthooker" = {
+            id = "p1000001-0000-0000-0000-000000000002";
+            url = "https://renji-xd.github.io/texthooker-ui/";
+            workspace = spaceLifeId;
+            position = 101;
+            editedTitle = true;
+          };
           "NixOS Search" = {
             id = "p1000002-0000-0000-0000-000000000002";
             url = "https://search.nixos.org/packages?channel=unstable&";
