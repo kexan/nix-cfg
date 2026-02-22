@@ -61,6 +61,7 @@
                 zen-browser
                 bitwig
                 ocr
+                zed
               ];
             };
           }
