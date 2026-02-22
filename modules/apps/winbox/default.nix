@@ -9,6 +9,5 @@
           package = pkgs.winbox4;
         };
       };
-
   };
 }

@@ -9,6 +9,7 @@
             "nix"
             "toml"
             "rust"
+            "cargo-tom"
           ];
           extraPackages = with pkgs; [
             nil
