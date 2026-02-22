@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.base =
-    { pkgs, hostConfig, ... }:
+    { hostConfig, ... }:
     {
       networking = {
         hostName = hostConfig.name;

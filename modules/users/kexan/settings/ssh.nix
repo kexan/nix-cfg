@@ -32,7 +32,6 @@ in
 
       {
         lib,
-        config,
         nixosConfig ? null,
         ...
       }:

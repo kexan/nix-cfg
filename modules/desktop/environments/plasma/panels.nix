@@ -1,7 +1,7 @@
 {
   flake.modules = {
     homeManager.plasma =
-      { config, pkgs, ... }:
+      { config, ... }:
       {
         home.file.".local/share/wallpapers/winxp.jpg".source = ../wallpapers/winxp.jpg;
 

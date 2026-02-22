@@ -1,6 +1,5 @@
 {
   flake.modules.homeManager.niri =
-    { lib, ... }:
     let
       radius = 12.0;
       cornerRadius = {

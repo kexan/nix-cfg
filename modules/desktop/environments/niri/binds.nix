@@ -3,7 +3,6 @@
     homeManager.niri =
       {
         config,
-        lib,
         pkgs,
         ...
       }:
