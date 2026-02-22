@@ -37,6 +37,11 @@
             inlay_hints = {
               enabled = true;
             };
+            diagnostics = {
+              inline = {
+                enabled = true;
+              };
+            };
             languages = {
               Rust = {
                 inlay_hints = {
