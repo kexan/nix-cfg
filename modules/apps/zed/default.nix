@@ -15,6 +15,7 @@
             nil
             nixd
             package-version-server
+            vscode-json-languageserver
           ];
           userSettings = {
             project_panel = {

@@ -3,7 +3,7 @@
 {
   flake.modules = {
     homeManager.lazyvim =
-      { pkgs, ... }:
+      { pkgs, osConfig, ... }:
 
       {
         imports = [ inputs.lazyvim.homeManagerModules.default ];
@@ -15,7 +15,7 @@
 
         programs.lazyvim = {
           enable = true;
-
+          ignoreBuildNotifications = true;
           extras = {
             lang = {
               nix.enable = true;
@@ -30,42 +30,63 @@
             formatting = {
               prettier.enable = true;
             };
+            ui = {
+              treesitter_context.enable = true;
+              indent_blankline.enable = true;
+            };
+            test.core.enable = true;
           };
+
+          plugins.lsp =
+            let
+              myFlake = "(builtins.getFlake \"/home/kexan/nix-cfg\")";
+              nixosOpts = "${myFlake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+              nixpkgsExpr = "import ${myFlake}.inputs.nixpkgs { }";
+            in
+            ''
+              return {
+                      {
+                        "neovim/nvim-lspconfig",
+                        opts = {
+                          servers = {
+                            nixd = {
+                              settings = {
+                                nixd = {
+                                  nixpkgs = {
+                                    expr = [[${nixpkgsExpr}]],
+                                  },
+                                  formatting = {
+                                    command = { "nixfmt" },
+                                  },
+                                  options = {
+                                    nixos = {
+                                      expr = [[${nixosOpts}]],
+                                    },
+                                  },
+                                },
+                              },
+                            },
+
+                            nil_ls = false,
+                          },
+                        },
+                      },
+                    }
+            '';
 
           extraPackages = with pkgs; [
             clang
             tree-sitter
-
             lua-language-server
-
-            nil
+            nixd
             statix
             nixfmt
-
             vscode-json-languageserver
-
             vtsls
-
             rust-analyzer
-
             yaml-language-server
           ];
-
-          plugins = {
-            colorscheme = ''
-              return {
-                { "ellisonleao/gruvbox.nvim" },
-
-                {
-                  "LazyVim/LazyVim",
-                  opts = {
-                    colorscheme = "gruvbox",
-                  },
-                }
-              }  '';
-          };
         };
-
       };
   };
 }
