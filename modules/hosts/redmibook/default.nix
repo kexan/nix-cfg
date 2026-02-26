@@ -65,6 +65,11 @@
       };
     };
 
+    boot.kernelParams = [
+      "i915.force_probe=!*"
+      "xe.force_probe=*"
+    ];
+
     hardware.facter.reportPath = ./facter.json;
 
     disko.devices = {
