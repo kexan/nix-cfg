@@ -19,7 +19,7 @@
         };
 
         "org/gnome/desktop/input-sources" = {
-          xkb-options = [ "grp:caps_toggle" ];
+          xkb-options = ["grp:caps_toggle"];
         };
 
         "org/gnome/desktop/peripherals/touchpad" = {
@@ -59,6 +59,5 @@
         };
       };
     };
-
   };
 }

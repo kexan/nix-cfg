@@ -1,6 +1,5 @@
 {
   flake.modules.nixos.thermald = {
-
     nixpkgs.overlays = [
       (final: prev: {
         thermald = prev.thermald.overrideAttrs (old: {

@@ -1,63 +1,59 @@
 {
   flake.modules = {
-    homeManager.retroarch =
-      {
-        inputs,
-        lib,
-        config,
-        ...
-      }:
+    homeManager.retroarch = {
+      inputs,
+      lib,
+      config,
+      ...
+    }: let
+      plasmaEnabled = config.programs.plasma.enable or false;
+    in {
+      imports = [
+        inputs.plasma-manager.homeModules.plasma-manager
+      ];
 
-      let
-        plasmaEnabled = config.programs.plasma.enable or false;
-      in
-      {
-        imports = [
-          inputs.plasma-manager.homeModules.plasma-manager
-        ];
+      programs = {
+        retroarch = {
+          enable = true;
 
-        programs = {
-          retroarch = {
-            enable = true;
-
-            cores = {
-              swanstation.enable = true;
-              ppsspp.enable = true;
-              dolphin.enable = true;
-            };
-
-            settings = {
-              video_driver = "vulkan";
-              video_fullscreen = "false";
-              video_window_custom_size_enable = "true";
-              video_windowed_position_width = "2560";
-              video_windowed_position_height = "1440";
-              pause_content_when_not_active = "false";
-              menu_driver = "xmb";
-            };
+          cores = {
+            swanstation.enable = true;
+            ppsspp.enable = true;
+            dolphin.enable = true;
           };
 
-          plasma = lib.mkIf plasmaEnabled {
-            window-rules = [
-              {
-                description = "Fullscreen hack for com.libretro.RetroArch";
-                match = {
-                  window-class = {
-                    value = "com.libretro.RetroArch";
-                    type = "exact";
-                    match-whole = false;
-                  };
-                };
-                apply = {
-                  fullscreen = {
-                    value = true;
-                    apply = "force";
-                  };
-                };
-              }
-            ];
+          settings = {
+            video_driver = "vulkan";
+            video_fullscreen = "false";
+            video_window_custom_size_enable = "true";
+            video_windowed_position_width = "2560";
+            video_windowed_position_height = "1440";
+            pause_content_when_not_active = "false";
+            menu_driver = "xmb";
           };
         };
+
+        plasma = lib.mkIf plasmaEnabled {
+          window-rules = [
+            {
+              description = "Fullscreen hack for com.libretro.RetroArch";
+              match = {
+                window-class = {
+                  value = "com.libretro.RetroArch";
+                  type = "exact";
+                  match-whole = false;
+                };
+              };
+              apply = {
+                fullscreen = {
+                  value = true;
+                  apply = "force";
+                };
+              };
+            }
+          ];
+        };
       };
+    };
   };
 }

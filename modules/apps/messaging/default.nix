@@ -1,13 +1,11 @@
 {
   flake.modules = {
-    homeManager.messaging =
-      { pkgs, ... }:
-      {
-        home.packages = with pkgs; [
-          telegram-desktop
-        ];
+    homeManager.messaging = {pkgs, ...}: {
+      home.packages = with pkgs; [
+        telegram-desktop
+      ];
 
-        programs.vesktop.enable = true;
-      };
+      programs.vesktop.enable = true;
+    };
   };
 }

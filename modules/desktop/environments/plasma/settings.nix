@@ -2,7 +2,6 @@
   flake.modules = {
     homeManager.plasma = {
       programs.plasma = {
-
         krunner = {
           position = "center";
           historyBehavior = "enableSuggestions";

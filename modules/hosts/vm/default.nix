@@ -1,12 +1,6 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   flake.modules.nixos."hosts/vm" = {
-    imports =
-      with config.flake.modules.nixos;
+    imports = with config.flake.modules.nixos;
       [
         # --- Core & System ---
         base
@@ -20,7 +14,6 @@
         # --- Users ---
         kexan
       ]
-
       # Specific Home-Manager modules
       ++ [
         {

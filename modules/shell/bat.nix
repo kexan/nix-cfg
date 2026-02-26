@@ -1,19 +1,19 @@
 {
   flake.modules = {
-    homeManager.shell =
-      { config, lib, ... }:
+    homeManager.shell = {
+      config,
+      lib,
+      ...
+    }: let
+      fishEnabled = config.programs.fish.enable;
+    in {
+      programs = {
+        bat.enable = true;
 
-      let
-        fishEnabled = config.programs.fish.enable;
-      in
-      {
-        programs = {
-          bat.enable = true;
-
-          fish.shellAliases = lib.mkIf fishEnabled {
-            cat = "bat";
-          };
+        fish.shellAliases = lib.mkIf fishEnabled {
+          cat = "bat";
         };
       };
+    };
   };
 }

@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   flake = {
     meta.users.root = rec {
       sshKeys = {

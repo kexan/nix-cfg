@@ -1,9 +1,6 @@
-{ config, ... }:
-
-let
+{config, ...}: let
   meta = config.flake.meta.users.kexan;
-in
-{
+in {
   flake = {
     meta.users.kexan = rec {
       email = "kexa76@gmail.com";
@@ -23,52 +20,48 @@ in
       ];
     };
 
-    modules.nixos.kexan =
-      {
-        inputs,
-        config,
-        lib,
-        ...
-      }:
+    modules.nixos.kexan = {
+      inputs,
+      config,
+      lib,
+      ...
+    }: let
+      sopsEnabled = config.sops.enable or false;
+    in {
+      imports = [inputs.sops-nix.nixosModules.sops];
 
-      let
-        sopsEnabled = config.sops.enable or false;
-      in
-      {
-        imports = [ inputs.sops-nix.nixosModules.sops ];
-
-        config = lib.mkMerge [
-          {
-            users.users.kexan = {
-              description = meta.name;
-              isNormalUser = true;
-              createHome = true;
-              extraGroups = [
-                "wheel"
-                "networkmanager"
-              ];
-              openssh.authorizedKeys.keys = meta.authorizedKeys;
-              initialPassword = "id";
-            };
-
-            nix.settings.trusted-users = [ meta.username ];
-
-            home-manager.sharedModules = [
-              inputs.self.modules.homeManager.kexan
+      config = lib.mkMerge [
+        {
+          users.users.kexan = {
+            description = meta.name;
+            isNormalUser = true;
+            createHome = true;
+            extraGroups = [
+              "wheel"
+              "networkmanager"
             ];
-          }
+            openssh.authorizedKeys.keys = meta.authorizedKeys;
+            initialPassword = "id";
+          };
 
-          (lib.mkIf sopsEnabled {
-            sops.secrets."users/kexan/password" = {
-              neededForUsers = true;
-            };
+          nix.settings.trusted-users = [meta.username];
 
-            users.users.kexan = {
-              initialPassword = lib.mkForce null;
-              hashedPasswordFile = config.sops.secrets."users/kexan/password".path;
-            };
-          })
-        ];
-      };
+          home-manager.sharedModules = [
+            inputs.self.modules.homeManager.kexan
+          ];
+        }
+
+        (lib.mkIf sopsEnabled {
+          sops.secrets."users/kexan/password" = {
+            neededForUsers = true;
+          };
+
+          users.users.kexan = {
+            initialPassword = lib.mkForce null;
+            hashedPasswordFile = config.sops.secrets."users/kexan/password".path;
+          };
+        })
+      ];
+    };
   };
 }

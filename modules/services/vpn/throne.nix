@@ -7,12 +7,10 @@
       };
     };
 
-    homeManager._vpn =
-      { pkgs, ... }:
-      {
-        xdg.autostart.entries = [
-          "${pkgs.throne}/share/applications/throne.desktop"
-        ];
-      };
+    homeManager._vpn = {pkgs, ...}: {
+      xdg.autostart.entries = [
+        "${pkgs.throne}/share/applications/throne.desktop"
+      ];
+    };
   };
 }

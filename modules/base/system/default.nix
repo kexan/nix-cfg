@@ -1,7 +1,6 @@
 let
   stateVersion = "25.05";
-in
-{
+in {
   flake.modules.nixos.base = {
     system = {
       # This value determines the NixOS release from which the default

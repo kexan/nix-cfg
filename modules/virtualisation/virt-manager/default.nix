@@ -1,16 +1,14 @@
 {
   flake.modules = {
-    nixos.virtmanager =
-      { pkgs, ... }:
-      {
-        virtualisation.libvirtd.enable = true;
-        programs.virt-manager.enable = true;
+    nixos.virtmanager = {pkgs, ...}: {
+      virtualisation.libvirtd.enable = true;
+      programs.virt-manager.enable = true;
 
-        environment.systemPackages = with pkgs; [
-          dnsmasq
-        ];
+      environment.systemPackages = with pkgs; [
+        dnsmasq
+      ];
 
-        networking.firewall.trustedInterfaces = [ "virbr0" ];
-      };
+      networking.firewall.trustedInterfaces = ["virbr0"];
+    };
   };
 }

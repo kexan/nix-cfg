@@ -1,12 +1,6 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   flake.modules.nixos."hosts/redmibook" = {
-    imports =
-      with config.flake.modules.nixos;
+    imports = with config.flake.modules.nixos;
       [
         # --- Core & System ---
         base
@@ -41,7 +35,6 @@
         # --- Users ---
         kexan
       ]
-
       # Specific Home-Manager modules
       ++ [
         {
@@ -102,7 +95,7 @@
                 size = "100%";
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  extraArgs = ["-f"];
 
                   subvolumes = {
                     "@" = {
