@@ -31,7 +31,6 @@
           };
           ui = {
             treesitter_context.enable = true;
-            indent_blankline.enable = true;
           };
           test.core.enable = true;
         };
