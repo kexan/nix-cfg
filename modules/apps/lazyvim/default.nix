@@ -39,6 +39,7 @@
         plugins.lsp = let
           myFlake = "(builtins.getFlake \"/home/kexan/nix-cfg\")";
           nixosOpts = "${myFlake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+          homeManagerOpts = "${nixosOpts}.home-manager.users.type.getSubOptions []";
           nixpkgsExpr = "import ${myFlake}.inputs.nixpkgs { }";
         in ''
           return {
@@ -58,6 +59,9 @@
                               options = {
                                 nixos = {
                                   expr = [[${nixosOpts}]],
+                                },
+                                home_manager = {
+                                  expr = [=[${homeManagerOpts}]=],
                                 },
                               },
                             },
