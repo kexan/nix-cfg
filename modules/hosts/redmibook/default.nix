@@ -47,6 +47,7 @@
               zen-browser
               ocr
               zed
+              godot
             ];
           };
         }
