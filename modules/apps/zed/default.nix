@@ -26,6 +26,9 @@
           };
           icon_theme = "Zed (Default)";
           theme = "Ayu Dark";
+          ui_font_size = 15.0;
+          buffer_font_size = 14.0;
+          buffer_line_height = "comfortable";
           agent_servers = {
             opencode = {
               type = "custom";
@@ -72,6 +75,8 @@
                 myFlake = "(builtins.getFlake \"/home/kexan/nix-cfg\")";
                 nixosOpts = "${myFlake}.nixosConfigurations.${osConfig.networking.hostName}.options";
                 homeManagerOpts = "${nixosOpts}.home-manager.users.type.getSubOptions []";
+                flakePartsOpts = "${myFlake}.debug.options";
+                flakePartsOpts2 = "${myFlake}.currentSystem.options";
                 nixpkgsExpr = "import ${myFlake}.inputs.nixpkgs { }";
               in {
                 nixpkgs = {
@@ -83,6 +88,12 @@
                   };
                   home_manager = {
                     expr = homeManagerOpts;
+                  };
+                  flake_parts = {
+                    expr = flakePartsOpts;
+                  };
+                  flake_parts2 = {
+                    expr = flakePartsOpts2;
                   };
                 };
               };

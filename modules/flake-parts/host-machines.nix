@@ -25,5 +25,6 @@
     };
   };
 in {
+  debug = true;
   flake.nixosConfigurations = lib.mapAttrs' mkHost hostModules;
 }
