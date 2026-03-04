@@ -55,7 +55,8 @@
             "anki/username" = {};
             "anki/key" = {};
           };
-          programs.anki.sync = {
+
+          programs.anki.profiles."User 1".sync = {
             usernameFile = config.sops.secrets."anki/username".path;
             keyFile = config.sops.secrets."anki/key".path;
           };

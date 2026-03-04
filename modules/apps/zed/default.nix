@@ -20,6 +20,7 @@
           vscode-json-languageserver
         ];
         userSettings = {
+          vim_mode = true;
           project_panel = {
             hide_gitignore = true;
             hide_hidden = true;
