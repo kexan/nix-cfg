@@ -51,8 +51,6 @@
           };
         };
       };
-
-      suppressXdgMigrationWarning = true;
     };
 
     programs.plasma = lib.mkIf plasmaEnabled {
