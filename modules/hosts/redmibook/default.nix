@@ -16,7 +16,7 @@
 
         # --- Desktop Environment ---
         desktop
-        plasma
+        niri
         flatpak
 
         # --- Network ---

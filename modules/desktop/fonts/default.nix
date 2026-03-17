@@ -6,6 +6,7 @@
 
         packages = with pkgs; [
           corefonts
+          adwaita-fonts
           roboto
           noto-fonts
           noto-fonts-cjk-sans-static
@@ -18,13 +19,21 @@
           enable = true;
 
           defaultFonts = {
-            emoji = [
-              "JoyPixels"
-              "Noto Color Emoji"
+            sansSerif = [
+              "Adwaita Sans"
+            ];
+
+            serif = [
+              "Adwaita Serif"
             ];
 
             monospace = [
               "FiraCode Nerd Font Mono"
+            ];
+
+            emoji = [
+              "JoyPixels"
+              "Noto Color Emoji"
             ];
           };
         };

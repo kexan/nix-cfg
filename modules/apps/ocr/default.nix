@@ -12,7 +12,6 @@
         name = "ocr";
         runtimeInputs = [
           nbocr
-          pkgs.kdePackages.spectacle
           pkgs.flameshot
           pkgs.jq
           pkgs.wl-clipboard
@@ -21,6 +20,9 @@
           pkgs.gnused
           pkgs.websocat
           pkgs.perl
+          pkgs.grim
+          pkgs.slurp
+          pkgs.kdePackages.spectacle
         ];
         text = ''
           set -euo pipefail
@@ -35,11 +37,19 @@
               echo "Скриншот отменен" >&2
               exit 1
             fi
-          else
+          elif command -v grim >/dev/null 2>&1 && command -v slurp >/dev/null 2>&1; then
+            if ! grim -g "$(slurp)" "$TEMP_IMG"; then
+              echo "Скриншот отменен" >&2
+              exit 1
+            fi
+          elif command -v flameshot >/dev/null 2>&1; then
             if ! flameshot gui --path "$TEMP_IMG" 2>/dev/null; then
               echo "Скриншот отменен" >&2
               exit 1
             fi
+          else
+            echo "Нет доступного инструмента для скриншотов" >&2
+            exit 1
           fi
 
           nbocr recognize -f json --precision fast -o "$TEMP_JSON" "$TEMP_IMG" 2>/dev/null || {
