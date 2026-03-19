@@ -8,8 +8,8 @@
         openssh
 
         # --- Desktop Environment ---
-        desktop
         plasma
+        fonts
 
         # --- Users ---
         kexan
