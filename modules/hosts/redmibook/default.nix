@@ -15,8 +15,8 @@
         thermald
 
         # --- Desktop Environment ---
-        desktop
-        niri
+        plasma
+        fonts
         flatpak
 
         # --- Network ---
@@ -31,6 +31,7 @@
 
         # --- Gaming ---
         gaming
+        ocr
 
         # --- Users ---
         kexan

@@ -8,6 +8,7 @@
       programs = {
         niri.enable = true;
         dms-shell.enable = true;
+        dms-shell.quickshell.package = inputs.quickshell.packages.${pkgs.system}.quickshell;
       };
 
       environment.systemPackages = with pkgs; [
@@ -20,17 +21,23 @@
       ];
 
       environment.variables = {
-        CLUTTER_BACKEND = "wayland";
         MOZ_ENABLE_WAYLAND = "1";
         NIXOS_OZONE_WL = "1";
+
         QT_QPA_PLATFORM = "wayland;xcb";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        SDL_VIDEODRIVER = "wayland";
-        WLR_RENDERER = "vulkan";
         QT_QPA_PLATFORMTHEME = "qt6ct";
+        XDG_CURRENT_DESKTOP = "niri:GNOME";
+        XDG_SESSION_DESKTOP = "niri";
+        XDG_SESSION_TYPE = "wayland";
       };
 
-      services.gvfs.enable = true;
+      services = {
+        gvfs.enable = true;
+        dms-greeter = {
+          enable = true;
+          compositor.name = "niri";
+        };
+      };
 
       home-manager.sharedModules = [
         inputs.self.modules.homeManager._niri

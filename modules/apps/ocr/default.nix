@@ -1,5 +1,34 @@
 {inputs, ...}: {
   flake.modules = {
+    nixos.ocr = {pkgs, ...}: {
+      nixpkgs.overlays = [
+        (final: prev: {
+          owocr = prev.owocr.overridePythonAttrs (old: {
+            propagatedBuildInputs =
+              (old.propagatedBuildInputs or [])
+              ++ [
+                prev.gst_all_1.gstreamer
+                prev.gst_all_1.gst-plugins-base
+                prev.gst_all_1.gst-plugins-good
+                prev.gst_all_1.gst-plugins-bad
+                prev.gobject-introspection
+                prev.pipewire
+                prev.wl-clipboard
+              ];
+
+            postFixup = ''
+              wrapProgram "$out/bin/owocr" \
+                --prefix GI_TYPELIB_PATH : "${prev.gst_all_1.gstreamer.out}/lib/girepository-1.0:${prev.gst_all_1.gst-plugins-base.out}/lib/girepository-1.0" \
+                --prefix GST_PLUGIN_PATH : "${prev.pipewire}/lib/gstreamer-1.0:${prev.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${prev.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${prev.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0" \
+                --prefix PATH : "${prev.wl-clipboard}/bin"
+            '';
+          });
+        })
+      ];
+
+      environment.systemPackages = with pkgs; [owocr];
+    };
+
     homeManager.ocr = {
       lib,
       config,

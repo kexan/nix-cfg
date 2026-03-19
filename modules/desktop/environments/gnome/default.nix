@@ -7,6 +7,7 @@
     }: {
       services = {
         desktopManager.gnome.enable = true;
+        displayManager.gdm.enable = true;
         gnome.games.enable = false;
       };
 
@@ -37,11 +38,11 @@
       };
 
       home-manager.sharedModules = [
-        inputs.self.modules.homeManager.gnome
+        inputs.self.modules.homeManager._gnome
       ];
     };
 
-    homeManager.gnome = {
+    homeManager._gnome = {
       xdg.autostart.enable = true;
     };
   };

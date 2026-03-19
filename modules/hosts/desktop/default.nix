@@ -15,8 +15,8 @@
         tuned
 
         # --- Desktop Environment ---
-        desktop
         plasma
+        fonts
         flatpak
 
         # --- Network ---

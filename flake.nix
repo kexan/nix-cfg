@@ -47,6 +47,11 @@
     systems.url = "github:nix-systems/default";
 
     newbee-ocr.url = "github:kexan/newbee-ocr-cli-nix";
+
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);

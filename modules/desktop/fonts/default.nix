@@ -1,12 +1,11 @@
 {
   flake.modules = {
-    nixos.desktop = {pkgs, ...}: {
+    nixos.fonts = {pkgs, ...}: {
       fonts = {
         enableDefaultPackages = true;
 
         packages = with pkgs; [
           corefonts
-          adwaita-fonts
           roboto
           noto-fonts
           noto-fonts-cjk-sans-static
@@ -19,14 +18,6 @@
           enable = true;
 
           defaultFonts = {
-            sansSerif = [
-              "Adwaita Sans"
-            ];
-
-            serif = [
-              "Adwaita Serif"
-            ];
-
             monospace = [
               "FiraCode Nerd Font Mono"
             ];
