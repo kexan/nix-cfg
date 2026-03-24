@@ -1,5 +1,17 @@
 {
   flake.modules = {
+    nixos.zed = {
+      inputs,
+      lib,
+      ...
+    }: {
+      programs.nix-ld.enable = lib.mkDefault true;
+
+      home-manager.sharedModules = [
+        inputs.self.modules.homeManager.zed
+      ];
+    };
+
     homeManager.zed = {
       pkgs,
       osConfig,
@@ -35,6 +47,12 @@
               type = "custom";
               command = "opencode";
               args = ["acp"];
+            };
+
+            qwen = {
+              type = "custom";
+              command = "qwen";
+              args = ["--acp"];
             };
           };
           agent = {

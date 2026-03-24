@@ -34,6 +34,7 @@
 
         # --- Apps ---
         ocr
+        zed
 
         # --- Users ---
         kexan
@@ -48,7 +49,6 @@
               lazyvim
               messaging
               zen-browser
-              zed
               godot
             ];
           };

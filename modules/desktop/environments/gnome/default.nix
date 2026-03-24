@@ -5,6 +5,9 @@
       pkgs,
       ...
     }: {
+      #if switching from kde then apply those fixes:
+      #dconf reset /org/gnome/desktop/interface/cursor-theme
+      #dconf reset /org/gnome/desktop/interface/icon-theme
       services = {
         desktopManager.gnome.enable = true;
         displayManager.gdm.enable = true;

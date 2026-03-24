@@ -31,6 +31,7 @@
 
         # --- Apps ---
         ocr
+        zed
 
         # --- Services ---
         caddy
@@ -54,7 +55,6 @@
               retroarch
               zen-browser
               bitwig
-              zed
             ];
           };
         }
