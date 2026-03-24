@@ -27,6 +27,10 @@
       ];
 
       environment.systemPackages = with pkgs; [owocr];
+
+      home-manager.sharedModules = [
+        inputs.self.modules.homeManager.ocr
+      ];
     };
 
     homeManager.ocr = {

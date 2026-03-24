@@ -31,6 +31,8 @@
 
         # --- Gaming ---
         gaming
+
+        # --- Apps ---
         ocr
 
         # --- Users ---
@@ -46,7 +48,6 @@
               lazyvim
               messaging
               zen-browser
-              ocr
               zed
               godot
             ];

@@ -29,6 +29,9 @@
         # --- Gaming ---
         gaming
 
+        # --- Apps ---
+        ocr
+
         # --- Services ---
         caddy
         jellyfin
@@ -51,7 +54,6 @@
               retroarch
               zen-browser
               bitwig
-              ocr
               zed
             ];
           };
