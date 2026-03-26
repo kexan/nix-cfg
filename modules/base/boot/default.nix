@@ -1,8 +1,14 @@
 {
-  flake.modules.nixos.base.boot = {
-    tmp = {
-      useTmpfs = true;
-      cleanOnBoot = true;
+  den.aspects.base = {
+    nixos = {
+      boot = {
+        initrd.systemd.enable = true;
+
+        tmp = {
+          useTmpfs = true;
+          cleanOnBoot = true;
+        };
+      };
     };
   };
 }

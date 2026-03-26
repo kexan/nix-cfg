@@ -1,9 +1,11 @@
 {
-  flake.modules.nixos.base = {
-    lib,
-    pkgs,
-    ...
-  }: {
-    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  den.aspects.base = {
+    nixos = {
+      pkgs,
+      lib,
+      ...
+    }: {
+      boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    };
   };
 }

@@ -1,8 +1,10 @@
 {
-  flake.modules.nixos.base = {
-    boot.loader.limine = {
-      enable = true;
-      maxGenerations = 15;
+  den.aspects.base = {
+    nixos = {
+      boot.loader.limine = {
+        enable = true;
+        maxGenerations = 15;
+      };
     };
   };
 }

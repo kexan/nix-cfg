@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base = {
-    time.timeZone = "Europe/Moscow";
+  den.aspects.base = {
+    nixos.time.timeZone = "Europe/Moscow";
   };
 }

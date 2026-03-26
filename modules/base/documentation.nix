@@ -1,7 +1,7 @@
 {
-  flake.modules.nixos.base = {
+  den.aspects.base = {
     # https://mastodon.online/@nomeata/109915786344697931
-    documentation = {
+    nixos.documentation = {
       enable = false;
       man.enable = false;
       doc.enable = false;
