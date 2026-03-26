@@ -50,6 +50,7 @@
               messaging
               zen-browser
               godot
+              rust-rover
             ];
           };
         }

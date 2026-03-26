@@ -35,17 +35,17 @@
 
         portal = {
           enable = true;
-          config.common.default = "gtk";
+          config.common.default = "gnome";
           extraPortals = with pkgs; [xdg-desktop-portal-gnome];
         };
       };
 
       home-manager.sharedModules = [
-        inputs.self.modules.homeManager._gnome
+        inputs.self.modules.homeManager.gnome
       ];
     };
 
-    homeManager._gnome = {
+    homeManager.gnome = {
       xdg.autostart.enable = true;
     };
   };

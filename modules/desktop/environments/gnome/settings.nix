@@ -10,10 +10,6 @@
     homeManager.gnome = {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
-          cursor-theme = "Adwaita";
-          cursor-size = 24;
-          gtk-theme = "Adwaita";
-          icon-theme = "Adwaita";
           accent-color = "green";
           show-battery-percentage = true;
         };
@@ -23,7 +19,7 @@
         };
 
         "org/gnome/desktop/peripherals/touchpad" = {
-          tap-to-click = false;
+          tap-to-click = true;
           natural-scroll = true;
           two-finger-scrolling-enabled = true;
           disable-while-typing = true;
@@ -40,11 +36,6 @@
 
         "org/gnome/settings-daemon/plugins/power" = {
           sleep-inactive-ac-timeout = 7200;
-        };
-
-        "org/gnome/desktop/wm/preferences" = {
-          button-layout = ":close";
-          focus-mode = "sloppy";
         };
 
         "org/gnome/shell/app-switcher" = {

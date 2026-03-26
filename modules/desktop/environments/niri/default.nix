@@ -33,7 +33,7 @@
 
       services = {
         gvfs.enable = true;
-        dms-greeter = {
+        displayManager.dms-greeter = {
           enable = true;
           compositor.name = "niri";
         };
