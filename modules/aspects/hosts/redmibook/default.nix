@@ -20,6 +20,8 @@
         hardware._.tuned
         hardware._.thermald
         services._.tailscale
+
+        kexan
       ];
     };
     nixos = {

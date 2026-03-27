@@ -1,6 +1,6 @@
 {
   den.aspects.shell.provides.git = {
-    homeManager = {config, ...}: {
+    homeManager = {
       programs = {
         git = {
           enable = true;
@@ -15,8 +15,8 @@
           };
           settings = {
             user = {
-              name = config.users.users.kexan.name;
-              email = config.users.users.kexan.email;
+              name = "Sergei Nikitin";
+              email = "kexa76@gmail.com";
             };
             branch = {
               autosetuprebase = "always";
