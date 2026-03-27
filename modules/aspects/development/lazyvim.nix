@@ -90,7 +90,7 @@
     };
   };
 
-  flake-files.input = {
+  flake-file.inputs = {
     lazyvim = {
       url = "github:pfassina/lazyvim-nix";
       inputs.nixpkgs.follows = "nixpkgs";

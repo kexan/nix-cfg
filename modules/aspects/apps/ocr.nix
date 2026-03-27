@@ -142,7 +142,7 @@
     };
   };
 
-  flake-files.input = {
+  flake-file.inputs = {
     newbee-ocr.url = "github:kexan/newbee-ocr-cli-nix";
   };
 }

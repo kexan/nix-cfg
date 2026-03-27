@@ -48,7 +48,7 @@
     };
   };
 
-  flake-files.input = {
+  flake-file.inputs = {
     quickshell = {
       url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";

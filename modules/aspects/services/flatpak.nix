@@ -1,7 +1,7 @@
 {
   den.aspects.services.provides.flatpak = {
     nixos = {inputs, ...}: {
-      imports = [inputs.flatpak.nixosModules.nix-flatpak];
+      imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
 
       services.flatpak = {
         enable = true;
@@ -12,6 +12,6 @@
   };
 
   flake-file.inputs = {
-    flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 }

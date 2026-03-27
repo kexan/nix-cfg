@@ -26,8 +26,5 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    import-tree.url = "github:vic/import-tree";
-    inputs.den.url = "github:vic/den";
   };
 }

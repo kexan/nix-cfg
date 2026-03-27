@@ -1,8 +1,12 @@
-{inputs, ...}: {
+{
+  inputs,
+  den,
+  ...
+}: {
   den.aspects.gaming.provides = {
     base = {host, ...}: {
       nixos = {pkgs, ...}: {
-        imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
+        includes = [den.aspects.services.provides.flatpak];
 
         boot.kernelModules = ["ntsync"];
         programs = {

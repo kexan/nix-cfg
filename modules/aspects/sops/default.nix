@@ -7,7 +7,7 @@
 in {
   den.aspects.sops = {
     nixos = {
-      imports = [inputs.sops.nixosModules.sops];
+      imports = [inputs.sops-nix.nixosModules.sops];
       sops = sops_config;
     };
     homeManager = {pkgs, ...}: {
