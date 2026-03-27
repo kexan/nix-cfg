@@ -269,22 +269,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1774630778,
-        "narHash": "sha256-dy6AAAFTjR7A/seKkjyJvGIz5zY3/du71QZtcWu0TlQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "362106940b6486199bbe2e4b047b21921495cdee",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1774386573,
@@ -358,7 +342,6 @@
         "nixpkgs-lib": [
           "nixpkgs"
         ],
-        "nixpkgs-master": "nixpkgs-master",
         "plasma-manager": "plasma-manager",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
