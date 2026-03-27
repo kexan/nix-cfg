@@ -17,6 +17,7 @@
         vpn
         gaming._.base
         openssh
+        apps._.anki
         hardware._.tuned
         hardware._.thermald
         services._.tailscale
