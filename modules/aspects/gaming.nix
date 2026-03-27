@@ -1,15 +1,8 @@
-{
-  inputs,
-  den,
-  ...
-}: {
+{inputs, ...}: {
   den.aspects.gaming.provides = {
     base = {host, ...}: {
-      includes = [
-        den.aspects.services.provides.flatpak.nixos
-      ];
-
       nixos = {pkgs, ...}: {
+        imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
         boot.kernelModules = ["ntsync"];
         services.flatpak.packages = ["ru.linux_gaming.PortProton"];
         programs = {

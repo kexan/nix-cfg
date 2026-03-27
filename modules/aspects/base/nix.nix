@@ -13,11 +13,5 @@
         optimise.automatic = true;
       };
     };
-
-    homeManager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      backupFileExtension = "backup";
-    };
   };
 }
