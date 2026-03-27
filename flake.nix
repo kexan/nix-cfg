@@ -30,21 +30,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     import-tree.url = "github:vic/import-tree";
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
-
-    systems.url = "github:nix-systems/default";
 
     newbee-ocr.url = "github:kexan/newbee-ocr-cli-nix";
 

@@ -9,6 +9,7 @@
     (inputs.den.flakeModules.dendritic or {})
   ];
 
+  _module.args.__findFile = den.lib.__findFile;
   den.ctx.user.includes = [den._.mutual-provider];
   den.schema.user.classes = lib.mkDefault ["homeManager"];
 
@@ -31,18 +32,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

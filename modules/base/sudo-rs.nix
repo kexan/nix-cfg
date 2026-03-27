@@ -1,7 +1,0 @@
-{
-  den.aspects.base = {
-    nixos = {
-      security.sudo-rs.enable = true;
-    };
-  };
-}
