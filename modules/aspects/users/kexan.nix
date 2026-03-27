@@ -22,10 +22,21 @@
       den.aspects.tools.provides.nix-trusted-user
     ];
 
-    user = {user, ...}: {
+    nixos = {
+      sops.secrets."users/kexan/password" = {
+        neededForUsers = true;
+      };
+    };
+
+    user = {
+      user,
+      config,
+      ...
+    }: {
       description = user.name;
       isNormalUser = true;
       createHome = true;
+      hashedPasswordFile = config.sops.secrets."users/kexan/password".path;
       openssh.authorizedKeys.keys = user.authorizedKeys;
     };
   };
