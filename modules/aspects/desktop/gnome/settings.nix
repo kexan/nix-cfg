@@ -1,13 +1,13 @@
 {
-  flake.modules = {
-    nixos.gnome = {
+  den.aspects.desktop.provides.gnome = {
+    nixos = {
       services.desktopManager.gnome.extraGSettingsOverrides = ''
         [org.gnome.desktop.input-sources]
         sources=[('xkb', 'us'), ('xkb', 'ru')]
       '';
     };
 
-    homeManager.gnome = {
+    homeManager = {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
           accent-color = "green";

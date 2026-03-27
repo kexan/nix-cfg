@@ -1,6 +1,6 @@
 {
-  flake.modules = {
-    homeManager.gnome = {
+  den.aspects.desktop.provides.gnome = {
+    homeManager = {
       dconf.settings = {
         "org/gnome/settings-daemon/plugins/media-keys" = {
           www = ["<Super>z"];

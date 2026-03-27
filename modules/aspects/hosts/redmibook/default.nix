@@ -8,8 +8,18 @@
     provides.to-users = {
       includes = with den.aspects; [
         base
+        btrfs
         sound
         (facter ./facter.json)
+        shell
+        sops
+        virtualisation._.virt-manager
+        vpn
+        gaming._.base
+        openssh
+        hardware._.tuned
+        hardware._.thermald
+        services._.tailscale
       ];
     };
     nixos = {
