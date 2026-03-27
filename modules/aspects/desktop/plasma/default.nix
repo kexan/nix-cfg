@@ -3,12 +3,12 @@
   inputs,
   ...
 }: {
-  den.aspects.desktop.provides.plasma = {pkgs, ...}: {
-    nixos = {
-      includes = [
-        den.aspects.desktop.provides.fonts
-      ];
+  den.aspects.desktop.provides.plasma = {
+    includes = [
+      den.aspects.desktop.provides.fonts
+    ];
 
+    nixos = {pkgs, ...}: {
       services = {
         desktopManager.plasma6.enable = true;
         displayManager.plasma-login-manager.enable = true;
@@ -58,7 +58,7 @@
       };
     };
 
-    homeManager = {
+    homeManager = {pkgs, ...}: {
       imports = [
         inputs.plasma-manager.homeModules.plasma-manager
       ];

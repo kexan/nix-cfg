@@ -1,6 +1,6 @@
-{
+{inputs, ...}: {
   den.aspects.services.provides.flatpak = {
-    nixos = {inputs, ...}: {
+    nixos = {
       imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
 
       services.flatpak = {

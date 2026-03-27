@@ -8,19 +8,31 @@
     provides.to-users = {
       includes = with den.aspects; [
         base
-        btrfs
-        sound
-        (facter ./facter.json)
         shell
-        sops
-        virtualisation._.virt-manager
-        vpn
-        gaming._.base
         openssh
+        sops
+        sound
+        vpn
+        (facter ./facter.json)
+
+        desktop._.plasma
         apps._.anki
+        apps._.zen-browser
+        apps._.messaging
+        apps._.winbox
+        apps._.ocr
+
+        development._.zed
+        development._.lazyvim
+
+        gaming._.base
+
         hardware._.tuned
         hardware._.thermald
-        services._.tailscale
+
+        virtualisation._.virt-manager
+
+        services._.flatpak
 
         kexan
       ];

@@ -1,10 +1,6 @@
 {
   den.aspects.development.provides.zed = {
-    homeManager = {
-      pkgs,
-      config,
-      ...
-    }: {
+    homeManager = {pkgs, ...}: {
       programs.zed-editor = {
         enable = true;
         extensions = [
@@ -74,34 +70,6 @@
               initialization_options = {
                 check = {
                   command = "clippy";
-                };
-              };
-            };
-            nixd = {
-              settings = let
-                myFlake = "(builtins.getFlake \"/home/kexan/nix-cfg\")";
-                nixosOpts = "${myFlake}.nixosConfigurations.${config.hostName}.options";
-                homeManagerOpts = "${nixosOpts}.home-manager.users.type.getSubOptions []";
-                flakePartsOpts = "${myFlake}.debug.options";
-                flakePartsOpts2 = "${myFlake}.currentSystem.options";
-                nixpkgsExpr = "import ${myFlake}.inputs.nixpkgs { }";
-              in {
-                nixpkgs = {
-                  expr = nixpkgsExpr;
-                };
-                options = {
-                  nixos = {
-                    expr = nixosOpts;
-                  };
-                  home_manager = {
-                    expr = homeManagerOpts;
-                  };
-                  flake_parts = {
-                    expr = flakePartsOpts;
-                  };
-                  flake_parts2 = {
-                    expr = flakePartsOpts2;
-                  };
                 };
               };
             };
