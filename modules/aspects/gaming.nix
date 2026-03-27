@@ -5,10 +5,13 @@
 }: {
   den.aspects.gaming.provides = {
     base = {host, ...}: {
-      nixos = {pkgs, ...}: {
-        includes = [den.aspects.services.provides.flatpak];
+      includes = [
+        den.aspects.services.provides.flatpak.nixos
+      ];
 
+      nixos = {pkgs, ...}: {
         boot.kernelModules = ["ntsync"];
+        services.flatpak.packages = ["ru.linux_gaming.PortProton"];
         programs = {
           steam = {
             enable = true;
@@ -17,7 +20,6 @@
               steamtinkerlaunch
             ];
           };
-          services.flatpak.packages = ["ru.linux_gaming.PortProton"];
           gamemode.enable = true;
           gamescope = {
             enable = true;
