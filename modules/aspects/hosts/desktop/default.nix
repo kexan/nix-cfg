@@ -1,8 +1,4 @@
-{
-  pkgs,
-  den,
-  ...
-}: {
+{den, ...}: {
   den.hosts.x86_64-linux.desktop.users.kexan = {};
   den.aspects.desktop = {
     provides.to-users = {
@@ -37,13 +33,10 @@
         services._.caddy
         services._.jellyfin
         services._.qbittorrent
-        services._.samba
         services._.tailscale
-
-        kexan
       ];
     };
-    nixos = {
+    nixos = {pkgs, ...}: {
       networking = {
         hosts = {
           "192.168.10.100" = [

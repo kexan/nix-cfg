@@ -23,16 +23,14 @@
     ];
 
     nixos = {
-      sops.secrets."users/kexan/password" = {
-        neededForUsers = true;
-      };
-    };
-
-    user = {
       user,
       config,
       ...
     }: {
+      sops.secrets."users/kexan/password" = {
+        neededForUsers = true;
+      };
+
       description = user.name;
       isNormalUser = true;
       createHome = true;

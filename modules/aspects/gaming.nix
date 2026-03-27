@@ -30,7 +30,7 @@
     };
 
     emulation = {
-      nixos = {
+      homeManager = {
         imports = [
           inputs.plasma-manager.homeModules.plasma-manager
         ];

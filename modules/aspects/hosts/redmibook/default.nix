@@ -33,8 +33,7 @@
         virtualisation._.virt-manager
 
         services._.flatpak
-
-        kexan
+        services._.tailscale
       ];
     };
     nixos = {

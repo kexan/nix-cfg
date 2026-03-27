@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{
   den.aspects.desktop.provides.plasma = {
     homeManager = {
       programs.konsole = {
