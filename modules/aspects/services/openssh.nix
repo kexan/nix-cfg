@@ -1,5 +1,5 @@
 {
-  den.aspects.openssh = {
+  den.aspects.services.provides.openssh = {
     nixos = {
       services.openssh = {
         enable = true;

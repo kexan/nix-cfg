@@ -5,7 +5,6 @@
       includes = with den.aspects; [
         base
         shell
-        openssh
         sops
         vpn
 
@@ -28,6 +27,7 @@
 
         virtualisation._.virtualbox
 
+        services._.openssh
         services._.flatpak
         services._.caddy
         services._.jellyfin

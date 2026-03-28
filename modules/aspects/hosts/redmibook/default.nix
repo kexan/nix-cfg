@@ -9,7 +9,6 @@
       includes = with den.aspects; [
         base
         shell
-        openssh
         sops
         vpn
 

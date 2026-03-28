@@ -32,6 +32,7 @@
 
         virtualisation._.virtualbox
 
+        services._.openssh
         services._.flatpak
         services._.caddy
         services._.jellyfin
