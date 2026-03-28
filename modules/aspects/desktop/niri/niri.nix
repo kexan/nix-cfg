@@ -1,11 +1,11 @@
 {
-  den,
   inputs,
+  __findFile,
   ...
 }: {
   den.aspects.desktop.provides.niri = {
     includes = [
-      den.aspects.desktop.provides.fonts
+      <desktop/fonts>
     ];
 
     nixos = {pkgs, ...}: {

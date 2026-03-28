@@ -1,7 +1,7 @@
-{den, ...}: {
+{__findFile, ...}: {
   den.aspects.desktop.provides.cosmic = {
     includes = [
-      den.aspects.desktop.provides.fonts
+      <desktop/fonts>
     ];
 
     nixos = {

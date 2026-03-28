@@ -1,6 +1,7 @@
 {
   inputs,
   den,
+  __findFile,
   ...
 }: {
   den.hosts.x86_64-linux.vm.users.kexan = {};
@@ -12,14 +13,14 @@
         sops
         vpn
 
-        desktop._.plasma
-        apps._.zen-browser
+        <desktop/plasma>
+        <apps/zen-browser>
 
-        (hardware._.facter ./facter.json)
-        hardware._.tuned
+        (<hardware/facter> ./facter.json)
+        <hardware/tuned>
 
-        services._.openssh
-        services._.tailscale
+        <services/openssh>
+        <services/tailscale>
       ];
     };
     nixos = {

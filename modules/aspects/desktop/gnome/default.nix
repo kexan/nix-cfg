@@ -1,8 +1,8 @@
-{den, ...}: {
+{__findFile, ...}: {
   den.aspects.desktop.provides.gnome = {pkgs, ...}: {
     nixos = {
       includes = [
-        den.aspects.desktop.provides.fonts
+        <desktop/fonts>
       ];
 
       #if switching from kde then apply those fixes:

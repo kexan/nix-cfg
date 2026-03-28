@@ -1,4 +1,8 @@
-{den, ...}: {
+{
+  den,
+  __findFile,
+  ...
+}: {
   den.hosts.x86_64-linux.desktop.users.kexan = {};
   den.aspects.desktop = {
     provides.to-users = {
@@ -8,31 +12,32 @@
         sops
         vpn
 
-        desktop._.plasma
-        apps._.anki
-        apps._.zen-browser
-        apps._.messaging
-        apps._.winbox
-        apps._.ocr
+        <desktop/plasma>
+        <apps/anki>
+        <apps/zen-browser>
+        <apps/messaging>
+        <apps/winbox>
+        <apps/ocr>
 
-        development._.zed
-        development._.lazyvim
+        <development/zed>
+        <development/lazyvim>
+        <development/ai>
 
-        gaming._.base
-        gaming._.emulation
+        <gaming/base>
+        <gaming/emulation>
 
-        (hardware._.facter ./facter.json)
-        hardware._.corectrl
-        hardware._.tuned
+        (<hardware/facter> ./facter.json)
+        <hardware/tuned>
+        <hardware/corectrl>
 
-        virtualisation._.virtualbox
+        <virtualisation/virtualbox>
 
-        services._.openssh
-        services._.flatpak
-        services._.caddy
-        services._.jellyfin
-        services._.qbittorrent
-        services._.tailscale
+        <services/openssh>
+        <services/flatpak>
+        <services/caddy>
+        <services/jellyfin>
+        <services/qbittorrent>
+        <services/tailscale>
       ];
     };
     nixos = {pkgs, ...}: {

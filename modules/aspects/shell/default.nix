@@ -1,10 +1,10 @@
-{den, ...}: {
+{__findFile, ...}: {
   den.aspects.shell = {
     includes = [
-      den.aspects.shell.provides.fish
-      den.aspects.shell.provides.starship
-      den.aspects.shell.provides.git
-      den.aspects.shell.provides.utils
+      <shell/fish>
+      <shell/starship>
+      <shell/git>
+      <shell/utils>
     ];
   };
 

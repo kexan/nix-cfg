@@ -1,16 +1,20 @@
-{den, ...}: {
+{
+  den,
+  __findFile,
+  ...
+}: {
   den.aspects.shell.provides = {
     utils = {
       includes = [
-        den.aspects.shell.provides.fzf
-        den.aspects.shell.provides.ripgrep
-        den.aspects.shell.provides.bat
-        den.aspects.shell.provides.lsd
-        den.aspects.shell.provides.zoxide
-        den.aspects.shell.provides.btop
-        den.aspects.shell.provides.direnv
-        den.aspects.shell.provides.nix-your-shell
-        den.aspects.shell.provides.devenv
+        <shell/fzf>
+        <shell/ripgrep>
+        <shell/bat>
+        <shell/lsd>
+        <shell/zoxide>
+        <shell/btop>
+        <shell/direnv>
+        <shell/nix-your-shell>
+        <shell/devenv>
       ];
     };
 

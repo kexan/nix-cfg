@@ -1,10 +1,14 @@
-{den, ...}: {
+{
+  den,
+  __findFile,
+  ...
+}: {
   den.aspects.kexan = {
     includes = [
       den.provides.define-user
       den.provides.primary-user
-      den.aspects.tools.provides.nix-trusted-user
-      den.aspects.kexan.provides.ssh-settings
+      <tools/nix-trusted-user>
+      <kexan/ssh-settings>
     ];
 
     nixos = {

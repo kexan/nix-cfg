@@ -1,6 +1,7 @@
 {
   inputs,
   den,
+  __findFile,
   ...
 }: {
   den.hosts.x86_64-linux.redmibook.users.kexan = {};
@@ -12,27 +13,27 @@
         sops
         vpn
 
-        desktop._.plasma
-        apps._.anki
-        apps._.zen-browser
-        apps._.messaging
-        apps._.winbox
-        apps._.ocr
+        <desktop/plasma>
+        <apps/anki>
+        <apps/zen-browser>
+        <apps/messaging>
+        <apps/winbox>
+        <apps/ocr>
 
-        development._.zed
-        development._.lazyvim
-        development._.ai
+        <development/zed>
+        <development/lazyvim>
+        <development/ai>
 
-        gaming._.base
+        <gaming/base>
 
-        (hardware._.facter ./facter.json)
-        hardware._.tuned
-        hardware._.thermald
+        (<hardware/facter> ./facter.json)
+        <hardware/tuned>
+        <hardware/thermald>
 
-        virtualisation._.virt-manager
+        <virtualisation/virt-manager>
 
-        services._.flatpak
-        services._.tailscale
+        <services/flatpak>
+        <services/flatpak>
       ];
     };
     nixos = {
