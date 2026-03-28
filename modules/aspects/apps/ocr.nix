@@ -1,6 +1,6 @@
 {inputs, ...}: {
   den.aspects.apps.provides.ocr = {
-    nixos = {pkgs, ...}: {
+    nixos = {
       nixpkgs.overlays = [
         (final: prev: {
           owocr = prev.owocr.overridePythonAttrs (old: {
@@ -25,8 +25,6 @@
           });
         })
       ];
-
-      environment.systemPackages = with pkgs; [owocr];
     };
 
     homeManager = {pkgs, ...}: let
@@ -117,6 +115,7 @@
       home.packages = [
         nbocr
         ocr
+        pkgs.owocr
       ];
 
       systemd.user.services.ocr-ws = {
