@@ -1,12 +1,10 @@
 {
   den.aspects.kexan.provides.ssh-settings = {
-    nixos = {
-      sops.secrets.ssh_key = {
-        path = "/home/kexan/.ssh/id_ed25519";
-        owner = "kexan";
-        group = "users";
-        mode = "0600";
-      };
+    sops.ssh_key = {
+      path = "/home/kexan/.ssh/id_ed25519";
+      owner = "kexan";
+      group = "users";
+      mode = "0600";
     };
 
     homeManager = {

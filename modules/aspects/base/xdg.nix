@@ -7,6 +7,7 @@
         userDirs = {
           enable = true;
           createDirectories = true;
+          setSessionVariables = true;
           templates = null;
           music = null;
           videos = null;

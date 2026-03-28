@@ -1,10 +1,30 @@
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  den,
+  ...
+}: let
   sops_config = {
     defaultSopsFile = ./secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/var/lib/secrets/sops/age/keys.txt";
   };
+
+  class = {
+    class,
+    aspect-chain,
+  }:
+    den._.forward {
+      each = lib.singleton class;
+      fromClass = _: "sops";
+      intoClass = _: "nixos";
+      intoPath = _: ["sops" "secrets"];
+      fromAspect = _: lib.head aspect-chain;
+      guard = {options, ...}: options ? sops;
+    };
 in {
+  den.ctx.user.includes = [class];
+
   den.aspects.sops = {
     nixos = {
       imports = [inputs.sops-nix.nixosModules.sops];

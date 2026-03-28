@@ -1,25 +1,23 @@
 {
   den.aspects.vpn = {
+    sops = {
+      "vpn/internal/ca" = {};
+      "vpn/internal/cert" = {};
+      "vpn/internal/key" = {};
+      "vpn/internal/tls-crypt" = {};
+
+      "vpn/kz/ca" = {};
+      "vpn/kz/cert" = {};
+      "vpn/kz/key" = {};
+      "vpn/kz/tls-crypt" = {};
+    };
+
     nixos = {
       config,
       pkgs,
       ...
     }: {
       networking.networkmanager.plugins = [pkgs.networkmanager-openvpn];
-
-      sops = {
-        secrets = {
-          "vpn/internal/ca" = {};
-          "vpn/internal/cert" = {};
-          "vpn/internal/key" = {};
-          "vpn/internal/tls-crypt" = {};
-
-          "vpn/kz/ca" = {};
-          "vpn/kz/cert" = {};
-          "vpn/kz/key" = {};
-          "vpn/kz/tls-crypt" = {};
-        };
-      };
 
       networking.networkmanager.ensureProfiles.profiles = {
         "internal-s.nikitin" = {

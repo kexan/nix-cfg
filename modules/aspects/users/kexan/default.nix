@@ -7,22 +7,32 @@
       den.aspects.kexan.provides.ssh-settings
     ];
 
-    nixos = {config, ...}: {
-      sops.secrets."users/kexan/password" = {
-        neededForUsers = true;
-      };
+    nixos = {
+      config,
+      lib,
+      ...
+    }: {
+      users.users.kexan =
+        {
+          description = "Sergei Nikitin";
+          isNormalUser = true;
+          createHome = true;
+          initialPassword = "id";
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPqSOM2HdLv6kEa1e6Mv82bGBYJ7MnD/LrDSaU6P6Nk5 kexan@MacBook-Air-Sergei.local"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINoEOEalFKRQplgze0K4HIFXUun2NcEUgb+ou/4UnKZB kexan@arch"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGVpR21HvBLpxNt6ADi4GJblqqzkBHBP6FfU7idSHY/V aliastes@mac"
+          ];
+        }
+        // lib.optionalAttrs (config.sops ? secrets) {
+          hashedPasswordFile =
+            config.sops.secrets."users/kexan/password".path;
+          initialPassword = null;
+        };
+    };
 
-      users.users.kexan = {
-        description = "Sergei Nikitin";
-        isNormalUser = true;
-        createHome = true;
-        hashedPasswordFile = config.sops.secrets."users/kexan/password".path;
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPqSOM2HdLv6kEa1e6Mv82bGBYJ7MnD/LrDSaU6P6Nk5 kexan@MacBook-Air-Sergei.local"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINoEOEalFKRQplgze0K4HIFXUun2NcEUgb+ou/4UnKZB kexan@arch"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGVpR21HvBLpxNt6ADi4GJblqqzkBHBP6FfU7idSHY/V aliastes@mac"
-        ];
-      };
+    sops."users/kexan/password" = {
+      neededForUsers = true;
     };
   };
 }
