@@ -14,8 +14,6 @@
 
         desktop._.plasma
         apps._.zen-browser
-        apps._.anki
-        apps._.ocr
 
         (hardware._.facter ./facter.json)
         hardware._.tuned

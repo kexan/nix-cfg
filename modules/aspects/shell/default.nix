@@ -8,40 +8,42 @@
     ];
   };
 
-  den.aspects.shell.provides.fish = {
-    nixos = {pkgs, ...}: {
-      programs.fish.enable = true;
-      users.defaultUserShell = pkgs.fish;
-    };
+  den.aspects.shell.provides = {
+    fish = {
+      nixos = {pkgs, ...}: {
+        programs.fish.enable = true;
+        users.defaultUserShell = pkgs.fish;
+      };
 
-    homeManager = {
-      home.shell.enableFishIntegration = true;
+      homeManager = {
+        home.shell.enableFishIntegration = true;
 
-      programs.fish = {
-        enable = true;
+        programs.fish = {
+          enable = true;
 
-        functions = {
-          last_history_item = ''
-            echo $history[1]
-          '';
+          functions = {
+            last_history_item = ''
+              echo $history[1]
+            '';
 
-          fish_greeting = ''
-            echo "ようこそ $(whoami)"
+            fish_greeting = ''
+              echo "ようこそ $(whoami)"
+            '';
+          };
+
+          interactiveShellInit = ''
+            abbr -a !! --position anywhere --function last_history_item
           '';
         };
-
-        interactiveShellInit = ''
-          abbr -a !! --position anywhere --function last_history_item
-        '';
       };
     };
-  };
 
-  den.aspects.shell.provides.starship = {
-    homeManager = {
-      programs.starship = {
-        enable = true;
-        enableTransience = true;
+    starship = {
+      homeManager = {
+        programs.starship = {
+          enable = true;
+          enableTransience = true;
+        };
       };
     };
   };
