@@ -10,6 +10,7 @@
     nixos = {
       config,
       lib,
+      options,
       ...
     }: {
       users.users.kexan =
@@ -24,7 +25,7 @@
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGVpR21HvBLpxNt6ADi4GJblqqzkBHBP6FfU7idSHY/V aliastes@mac"
           ];
         }
-        // lib.optionalAttrs (config.sops ? secrets) {
+        // lib.optionalAttrs (options ? sops) {
           hashedPasswordFile =
             config.sops.secrets."users/kexan/password".path;
           initialPassword = null;

@@ -22,8 +22,21 @@
       fromAspect = _: lib.head aspect-chain;
       guard = {options, ...}: options ? sops;
     };
+
+  hm-class = {
+    class,
+    aspect-chain,
+  }:
+    den._.forward {
+      each = lib.singleton class;
+      fromClass = _: "sops-hm";
+      intoClass = _: "homeManager";
+      intoPath = _: ["sops" "secrets"];
+      fromAspect = _: lib.head aspect-chain;
+      guard = {options, ...}: options ? sops;
+    };
 in {
-  den.ctx.user.includes = [class];
+  den.ctx.user.includes = [class hm-class];
 
   den.aspects.sops = {
     nixos = {

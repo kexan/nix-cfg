@@ -1,8 +1,15 @@
 {
   den.aspects.apps.provides.anki = {
+    sops-hm = {
+      "anki/username" = {};
+      "anki/key" = {};
+    };
+
     homeManager = {
       config,
       pkgs,
+      options,
+      lib,
       ...
     }: let
       minimizeToTray = pkgs.anki-utils.buildAnkiAddon (finalAttrs: {
@@ -34,21 +41,16 @@
         language = "ru_RU";
         theme = "followSystem";
         style = "native";
+
+        profiles."User 1".sync = lib.optionalAttrs (options ? sops) {
+          usernameFile = config.sops.secrets."anki/username".path;
+          keyFile = config.sops.secrets."anki/key".path;
+        };
       };
 
       xdg.autostart.entries = [
         "${pkgs.anki}/share/applications/anki.desktop"
       ];
-
-      sops.secrets = {
-        "anki/username" = {};
-        "anki/key" = {};
-      };
-
-      programs.anki.profiles."User 1".sync = {
-        usernameFile = config.sops.secrets."anki/username".path;
-        keyFile = config.sops.secrets."anki/key".path;
-      };
     };
   };
 }

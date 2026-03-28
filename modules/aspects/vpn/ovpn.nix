@@ -14,12 +14,14 @@
 
     nixos = {
       config,
+      options,
       pkgs,
+      lib,
       ...
     }: {
       networking.networkmanager.plugins = [pkgs.networkmanager-openvpn];
 
-      networking.networkmanager.ensureProfiles.profiles = {
+      networking.networkmanager.ensureProfiles.profiles = lib.optionalAttrs (options ? sops) {
         "internal-s.nikitin" = {
           connection = {
             id = "internal-s.nikitin";
