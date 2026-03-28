@@ -1,5 +1,11 @@
-{
+{den, ...}: {
   den.aspects.desktop.provides.fonts = {
+    includes = [
+      (den.provides.unfree [
+        "corefonts"
+        "joypixels"
+      ])
+    ];
     nixos = {pkgs, ...}: {
       fonts = {
         enableDefaultPackages = true;
