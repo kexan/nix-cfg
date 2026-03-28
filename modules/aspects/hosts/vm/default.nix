@@ -11,9 +11,7 @@
         shell
         openssh
         sops
-        sound
         vpn
-        (facter ./facter.json)
 
         desktop._.plasma
         apps._.anki
@@ -28,6 +26,7 @@
         gaming._.base
         gaming._.emulation
 
+        (hardware._.facter ./facter.json)
         hardware._.corectrl
         hardware._.tuned
 

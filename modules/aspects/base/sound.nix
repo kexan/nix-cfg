@@ -1,5 +1,5 @@
 {
-  den.aspects.sound = {
+  den.aspects.base = {
     nixos = {
       services = {
         pipewire = {

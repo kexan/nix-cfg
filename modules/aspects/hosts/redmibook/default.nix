@@ -11,9 +11,7 @@
         shell
         openssh
         sops
-        sound
         vpn
-        (facter ./facter.json)
 
         desktop._.plasma
         apps._.anki
@@ -24,9 +22,11 @@
 
         development._.zed
         development._.lazyvim
+        development._.ai
 
         gaming._.base
 
+        (hardware._.facter ./facter.json)
         hardware._.tuned
         hardware._.thermald
 

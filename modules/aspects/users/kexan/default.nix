@@ -4,12 +4,14 @@
       den.provides.define-user
       den.provides.primary-user
       den.aspects.tools.provides.nix-trusted-user
+      den.aspects.kexan.provides.ssh-settings
     ];
 
     nixos = {config, ...}: {
       sops.secrets."users/kexan/password" = {
         neededForUsers = true;
       };
+
       users.users.kexan = {
         description = "Sergei Nikitin";
         isNormalUser = true;
