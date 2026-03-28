@@ -10,10 +10,34 @@
         base
         shell
         openssh
-        plasma
-        fonts
+        sops
+        sound
+        vpn
+        (facter ./facter.json)
 
-        kexan
+        desktop._.plasma
+        apps._.anki
+        apps._.zen-browser
+        apps._.messaging
+        apps._.winbox
+        apps._.ocr
+
+        development._.zed
+        development._.lazyvim
+
+        gaming._.base
+        gaming._.emulation
+
+        hardware._.corectrl
+        hardware._.tuned
+
+        virtualisation._.virtualbox
+
+        services._.flatpak
+        services._.caddy
+        services._.jellyfin
+        services._.qbittorrent
+        services._.tailscale
       ];
     };
     nixos = {
