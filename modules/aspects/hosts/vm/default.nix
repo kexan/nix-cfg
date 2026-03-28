@@ -10,7 +10,6 @@
       includes = with den.aspects; [
         base
         shell
-        sops
         vpn
 
         <desktop/plasma>
@@ -23,10 +22,23 @@
         <services/tailscale>
       ];
     };
-    nixos = {
+    nixos = {pkgs, ...}: {
       imports = [
         inputs.disko.nixosModules.disko
       ];
+
+      virtualisation.vmVariant = {
+        virtualisation = {
+          graphics = true;
+          cores = 4;
+          memorySize = 4096;
+          qemu.options = [
+            "-vga virtio"
+            "-display gtk,gl=on"
+          ];
+        };
+      };
+      boot.kernelPackages = pkgs.linuxPackages_6_18;
 
       disko.devices = {
         disk = {

@@ -8,7 +8,7 @@
     };
 
     user = {
-      extraGroups = ["libvirtd"];
+      extraGroups = ["libvirtd" "kvm"];
     };
   };
 }

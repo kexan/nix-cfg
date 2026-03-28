@@ -1,3 +1,4 @@
 .direnv
 result
 /.zed
+/vm.qcow2
