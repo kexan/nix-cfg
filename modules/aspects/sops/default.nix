@@ -18,7 +18,10 @@
       each = lib.singleton class;
       fromClass = _: "sops";
       intoClass = _: "nixos";
-      intoPath = _: ["sops" "secrets"];
+      intoPath = _: [
+        "sops"
+        "secrets"
+      ];
       fromAspect = _: lib.head aspect-chain;
       guard = {options, ...}: options ? sops;
     };
@@ -31,12 +34,18 @@
       each = lib.singleton class;
       fromClass = _: "sops-hm";
       intoClass = _: "homeManager";
-      intoPath = _: ["sops" "secrets"];
+      intoPath = _: [
+        "sops"
+        "secrets"
+      ];
       fromAspect = _: lib.head aspect-chain;
       guard = {options, ...}: options ? sops;
     };
 in {
-  den.ctx.user.includes = [class hm-class];
+  den.ctx.user.includes = [
+    class
+    hm-class
+  ];
 
   den.aspects.sops = {
     nixos = {
@@ -45,8 +54,6 @@ in {
     };
     homeManager = {pkgs, ...}: {
       imports = [inputs.sops-nix.homeManagerModules.sops];
-      sops = sops_config;
-      home.sessionVariables.SOPS_AGE_KEY_FILE = sops_config.age.keyFile;
       home.packages = [pkgs.sops];
     };
   };

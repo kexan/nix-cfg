@@ -10,7 +10,7 @@
           "cargo-tom"
         ];
         extraPackages = with pkgs; [
-          nixd
+          nil
           alejandra
           package-version-server
           vscode-json-languageserver
@@ -61,12 +61,8 @@
               soft_wrap = "prefer_line";
             };
             Nix = {
-              language_servers = ["nixd"];
-              formatter = {
-                language_server = {
-                  name = "nixd";
-                };
-              };
+              language_servers = ["nil"];
+              formatter.external.command = "alejandra";
             };
           };
           lsp = {
@@ -74,18 +70,6 @@
               initialization_options = {
                 check = {
                   command = "clippy";
-                };
-              };
-            };
-            nixd = {
-              settings = {
-                nixd = {
-                  nixpkgs = {
-                    expr = "(builtins.getFlake \"/home/kexan/nix-cfg\").inputs.nixpkgs {}";
-                  };
-                  formatting = {
-                    command = ["alejandra"];
-                  };
                 };
               };
             };
