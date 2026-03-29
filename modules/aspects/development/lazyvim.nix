@@ -31,6 +31,20 @@
           test.core.enable = true;
         };
 
+        plugins.lsp = ''
+          return {
+            {
+              "stevearc/conform.nvim",
+              optional = true,
+              opts = {
+                formatters_by_ft = {
+                  nix = { "alejandra" },
+                },
+              },
+            }
+          }
+        '';
+
         extraPackages = with pkgs; [
           clang
           tree-sitter

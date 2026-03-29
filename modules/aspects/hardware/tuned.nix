@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   den.aspects.hardware.provides.tuned = {
     nixos = {
       services = {
