@@ -18,6 +18,8 @@
         (<hardware/facter> ./facter.json)
         <hardware/tuned>
 
+        <virtualisation/virt-manager>
+
         <services/openssh>
         <services/tailscale>
       ];

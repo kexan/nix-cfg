@@ -1,5 +1,6 @@
-{
+{__findFile, ...}: {
   den.aspects.base = {
+    includes = [(<tools/groups> ["audio"])];
     nixos = {
       services = {
         pipewire = {
@@ -18,13 +19,6 @@
         };
       };
       security.rtkit.enable = true;
-    };
-
-    user = {
-      extraGroups = [
-        "sound"
-        "audio"
-      ];
     };
   };
 }

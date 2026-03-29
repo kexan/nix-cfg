@@ -1,5 +1,8 @@
-{
+{__findFile, ...}: {
   den.aspects.services.provides.jellyfin = {
+    includes = [
+      (<tools/groups> ["jellyfin"])
+    ];
     nixos = {
       services.jellyfin = {
         enable = true;
@@ -28,10 +31,6 @@
           reverse_proxy 127.0.0.1:8096
         '';
       };
-    };
-
-    user = {
-      extraGroups = ["jellyfin"];
     };
   };
 }

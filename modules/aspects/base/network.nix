@@ -1,4 +1,4 @@
-{
+{__findFile, ...}: {
   den.aspects.base = {
     includes = [
       (
@@ -6,6 +6,7 @@
           ${host.class}.networking.hostName = host.hostName;
         }
       )
+      (<tools/groups> ["networkmanager"])
     ];
 
     nixos = {
@@ -25,12 +26,6 @@
       services.resolved = {
         enable = true;
       };
-    };
-
-    user = {
-      extraGroups = [
-        "networkmanager"
-      ];
     };
   };
 }
