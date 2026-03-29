@@ -61,8 +61,12 @@
               soft_wrap = "prefer_line";
             };
             Nix = {
-              language_servers = ["nixd" "!nil"];
-              formatter.external.command = "alejandra";
+              language_servers = ["nixd"];
+              formatter = {
+                language_server = {
+                  name = "nixd";
+                };
+              };
             };
           };
           lsp = {
@@ -70,6 +74,18 @@
               initialization_options = {
                 check = {
                   command = "clippy";
+                };
+              };
+            };
+            nixd = {
+              settings = {
+                nixd = {
+                  nixpkgs = {
+                    expr = "(builtins.getFlake \"/home/kexan/nix-cfg\").inputs.nixpkgs {}";
+                  };
+                  formatting = {
+                    command = ["alejandra"];
+                  };
                 };
               };
             };

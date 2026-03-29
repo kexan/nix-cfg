@@ -13,6 +13,13 @@
         sops
         vpn
 
+        (<hardware/facter> ./facter.json)
+        <hardware/tuned>
+        <hardware/thermald>
+        btrfs
+
+        <virtualisation/virt-manager>
+
         <desktop/plasma>
         <apps/anki>
         <apps/zen-browser>
@@ -20,20 +27,14 @@
         <apps/winbox>
         <apps/ocr>
 
+        <development/ai>
         <development/zed>
         <development/lazyvim>
-        <development/ai>
 
         <gaming/base>
 
-        (<hardware/facter> ./facter.json)
-        <hardware/tuned>
-        <hardware/thermald>
-
-        <virtualisation/virt-manager>
-
         <services/flatpak>
-        <services/flatpak>
+        <services/tailscale>
       ];
     };
     nixos = {

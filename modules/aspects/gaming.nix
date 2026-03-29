@@ -1,6 +1,16 @@
-{inputs, ...}: {
+{
+  den,
+  inputs,
+  ...
+}: {
   den.aspects.gaming.provides = {
-    base = {host, ...}: {
+    base = {
+      includes = [
+        (den.provides.unfree [
+          "steam"
+          "steam-unwrapped"
+        ])
+      ];
       nixos = {pkgs, ...}: {
         imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
         boot.kernelModules = ["ntsync"];
@@ -14,17 +24,7 @@
             ];
           };
           gamemode.enable = true;
-          gamescope = {
-            enable = true;
-            args = [
-              "-W ${toString host.primaryDisplay.width}"
-              "-H ${toString host.primaryDisplay.height}"
-              "-r ${toString host.primaryDisplay.refresh}"
-              "-O ${host.primaryDisplay.name}"
-              "-f"
-              "--adaptive-sync"
-            ];
-          };
+          gamescope.enable = true;
         };
       };
     };

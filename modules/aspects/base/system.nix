@@ -12,6 +12,10 @@ in {
       system = {
         inherit stateVersion;
       };
+      home-manager = {
+        backupFileExtension = "backup";
+        useGlobalPkgs = true;
+      };
     };
   };
 }
